@@ -1,0 +1,20 @@
+TV Box, 0, 5, What are four of your favorite TV channels?
+Double Reverse Alphabet, 0, 3, A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+Sure Ding, 0, 4,
+No Laughing, 0, 3, Something funny and something serious
+More or Less, 0, 4, An ordinary task you do everyday.
+Stunt Doubles, 0, 5,
+Pillars, 0, 4, Two audience volunteers.
+Do You Have a Receipt?, 0, 5, How many products can we return in 1.5 minutes?
+A Date with Me, 0, 1, A date with me is like <object/occupation>.
+Questions Only, 0, 3,
+Highlander, 0, 5,
+Genres, 0, 4, At least three story genres.
+Headphones, 0, 4,
+Sit-Stand-Lie, 0, 4, Your favorite Olympic sport
+Puppets,0,5,
+Story-Story-Die, 0, 1, The title of a book that's never been written
+Everybody Dies, 0, 4, 3 Locations
+World's Worst, 0, 1, An occupation, animal, or celebrity
+Forward-Reverse, 0, 4,
+Mutant Debate, 0, 6, What is a dumb argument you've had recently?
