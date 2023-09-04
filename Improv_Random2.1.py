@@ -4,6 +4,7 @@ import random
 import time
 import math
 import tkinter.messagebox
+from pathlib import Path
 from tkinter import filedialog as fd
 from tkinter import ttk
 from tkinter.messagebox import askyesno
@@ -23,6 +24,13 @@ ss_default = 0
 mm_left = mm_default
 ss_left = ss_default
 spinFlag = False
+
+
+ROOT = Path(__file__).resolve().parent
+
+def raw_path(filename:str):
+    return rf"{ROOT.absolute().as_posix()}/assets/audio/{filename}"
+
 
 #========================GUI CODE=======================#
 class GameSpace(object):
@@ -94,7 +102,8 @@ class GameSpace(object):
         #self.title_label.config(text='C.A.R.L OFFLINE',fg='red')
         time_left = str(mm_left).rjust(2,'0')+':'+str(ss_left).rjust(2,'0')
         self.timer_label.config(text=time_left,fg='red')
-        playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\endhorn.mp3',False)
+        # playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\endhorn.mp3',False)
+        playsound(raw_path('endhorn.mp3'),False)
         return
       elif mm_left == 5 and ss_left == 1:
         ss_left -= 1
@@ -102,7 +111,8 @@ class GameSpace(object):
         print('FIVE MINUTES LEFT!')
         time_left = str(mm_left).rjust(2,'0')+':'+str(ss_left).rjust(2,'0')
         self.timer_label.config(text=time_left,fg='red',font=(None,50,'bold'))
-        playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\ahooga-horn.mp3',False)
+        # playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\ahooga-horn.mp3',False)
+        playsound(raw_path('ahooga-horn.mp3'),False)
       else:
         if ss_left == 0:
           mm_left -= 1
@@ -116,7 +126,8 @@ class GameSpace(object):
           time_left = str(mm_left).rjust(2,'0')+':'+str(ss_left).rjust(2,'0')
           self.timer_label.config(text=time_left)
           if mm_left == 0 and ss_left < 31:
-            playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\TickSound.mp3',False)
+            # playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\TickSound.mp3',False)
+            playsound(raw_path('TickSound.mp3'),False)
             self.timer_label.config(font=(None,60,'bold'))
     self.win.after(1000,self.countdown)
       
@@ -153,7 +164,7 @@ class GameSpace(object):
   def getPlayers(self):
     global playerlist
     #Read namelist file and create list
-    name_file = open(r"C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\players.txt", 'r', encoding='UTF-8')
+    name_file = open(ROOT / 'players.txt', 'r', encoding='UTF-8')
     playerlist = name_file.readlines()
     
     #Remove line breaks in stopwords list
@@ -172,7 +183,7 @@ class GameSpace(object):
   def getGames(self):
     global gameslist
     #Read gamelist file and create list
-    game_file = open(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\games.txt', 'r', encoding='UTF-8')
+    game_file = open(ROOT / 'games.txt', 'r', encoding='UTF-8')
     gameslist = game_file.readlines()
     
     #Remove line breaks in stopwords list
@@ -201,7 +212,7 @@ class GameSpace(object):
   def getPrompts(self):
     global promptlist
     #Read promptlist file and create list
-    prompt_file = open(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\prompts.txt', 'r', encoding='UTF-8')
+    prompt_file = open(ROOT / 'prompts.txt', 'r', encoding='UTF-8')
     promptlist = prompt_file.readlines()
     
     #Remove line breaks in stopwords list
@@ -284,12 +295,14 @@ class GameSpace(object):
     if self.started == False:
       self.started = True
       self.spin_button.config(text='NEXT GAME')
-      playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\Air Horn.mp3',False)
+    #   playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\Air Horn.mp3',False)
+      playsound(raw_path('Air Horn.mp3'),False)
       self.countdown()
     
     if counter >= len(gameslist):
       print('GAME FINISHED! RESET!')
-      playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\1up.mp3',False)
+    #   playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\1up.mp3',False)
+      playsound(raw_path('1up.mp3'),False)
       self.score_label.configure(text='Games Played: '+str(counter))
       self.started = False
       self.spin_button['state'] = tkinter.DISABLED
@@ -301,7 +314,8 @@ class GameSpace(object):
       #self.title_label.config(text='C.A.R.L OFFLINE',fg='red')
     else:
       if counter > 0:
-        playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\1up.mp3',False)
+        # playsound(r'C:\Users\pbarr\Desktop\improv_dev\MonolougeBot-main\1up.mp3',False)
+        playsound(raw_path('1up.mp3'),False)
       
       self.score_label.configure(text='Games Played: '+str(counter))
       r=55

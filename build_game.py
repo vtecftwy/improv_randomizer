@@ -112,7 +112,17 @@ class GameSpace(object):
             )
         self.prompt_info.grid(row=21, rowspan=10, column=1, sticky='we')
 
-
+    def draw_games(self):
+        #split games into areas and figure out positions
+        midpt_x = int(self.C.config('width')[4]) / 2
+        midpt_y = int(self.C.config('height')[4]) / 2
+        position_r=280
+        #C.create_text(midpt_x, midpt_y, text='Center', font=(None,12))
+        angle = math.radians(360/len(gameslist))
+        #print(angle)
+        n_games = len(gameslist) - 1
+        x.clear()
+        y.clear()
         
 if __name__ == '__main__':
     root = tk.Tk()

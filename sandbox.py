@@ -18,7 +18,7 @@ ss_default = 0
 ROOT = Path(__file__).resolve().parent
 
 def raw_path(filename:str):
-    return rf"{ROOT.absolute().as_posix()}/{filename}"
+    return rf"{ROOT.absolute().as_posix()}/assets/audio/{filename}"
 
 class GameSpace(object):
     """ Canvas for the game space and prompt boxes"""
