@@ -9,8 +9,8 @@ from gamesession import GameSession
 window = tk.Tk()
 gamespace = GameSpace(window)
 session = GameSession()
-gamespace.update(session)
-gamespace.draw_games(session.games)
+gamespace.start(session)
+gamespace.draw_games()
 
 window.mainloop()
 

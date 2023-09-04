@@ -1,7 +1,12 @@
+import datetime as dt
 import json
 import numpy as np
 import random
+import time as tm
 from pathlib import Path
+
+GAME_DURATION = dt.timedelta(minutes=45, seconds=0  )
+
 
 ROOT = Path(__file__).resolve().parent
 p2games = ROOT/ 'games.json'
@@ -18,11 +23,16 @@ class GameSession:
     def __init__(self) -> None:
         self.load_game_info()
         self.game_sequence = list(range(self.nbr_games))
-        self.current_game_idx = None
         random.shuffle(self.game_sequence)
-        
+        self.game_started = False
+        self.start_time = None
+        self.step = 0
+        self.nbr_games_played = 0
+        self.current_game_idx = None
+        self.previous_game_idx = None
 
-    def load_game_info(self):
+
+    def load_game_info(self, shuffle=False):
         """Load all game and player info from files"""
 
         # Handle games
@@ -33,7 +43,8 @@ class GameSession:
         # create a list of Game objects, one per game in the list
         self.games = [Game(d) for d in self.gamedict.values()]
         # shuffle the list of games to randomize the order
-        random.shuffle(self.games)
+        if shuffle:
+            random.shuffle(self.games)
 
         self.nbr_games = len(self.games)
 
@@ -68,7 +79,7 @@ class GameSession:
         player_names = np.array([player.name for player in self.cast])
         player_joining_game = [game.name not in player.game_exclusion_list for player in self.cast]
         player_game_count = np.array([player.nbr_games_played for player in self.cast])
-
+        
         if method == 'linear':
             weights = factor/(player_game_count+1)
         elif method == 'exponential':
@@ -78,19 +89,38 @@ class GameSession:
             raise AttributeError(f'Unknown method {method}')
         
         probabilities = self.masked_softmax(weights, mask=player_joining_game)
-
+        
         # Draw a sample from the discrete distribution
-        idxs_picked = np.sort(np.random.choice(np.arange(self.nbr_players), size=game.nbr_players, p=probabilities, replace=False))
+        nbr_players = game.nbr_players if game.nbr_players > 0 else sum(player_joining_game)
+        idxs_picked = np.sort(np.random.choice(np.arange(self.nbr_players), size=nbr_players, p=probabilities, replace=False))
 
         return idxs_picked.tolist(), player_names[idxs_picked].tolist()
 
     def pick_next_game(self):
         """Pick the next game to play"""
         if self.game_sequence:
+            self.step += 1
+            self.nbr_games_played += 1
+            self.previous_game_idx = self.current_game_idx
             self.current_game_idx = self.game_sequence.pop()
-        else:
-            raise ValueError('No more games to play')
 
+        else:
+            # raise ValueError('No more games to play')
+            self.nbr_games_played += 1
+
+    def start_game(self):
+        """Start the game"""
+        self.game_started = True
+        self.start_time = dt.datetime.now()
+        self.pick_next_game()
+        
+    @property
+    def time_left(self) -> dt.timedelta:
+        """Return the time left for the game, as a deltatime object"""
+        left_time =  self.start_time + GAME_DURATION - dt.datetime.now()
+        zero = dt.timedelta(seconds=0)
+        return max(left_time, zero)
+        
     @staticmethod
     def masked_softmax(x, mask):
         """Calculate softmax of x, using only indices where mask==True, all others = 0"""
