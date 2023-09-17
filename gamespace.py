@@ -2,12 +2,14 @@ import math
 import random
 import tkinter as tk
 
+from datetime import datetime, timedelta
 from pathlib import Path 
 from PIL import ImageTk, Image
 from playsound import playsound
 from pprint import pprint
 from tkinter import ttk
 from tkinter.messagebox import askyesno
+from utils import *
 
 # Define game parameters
 mm_default = 45
@@ -15,10 +17,14 @@ ss_default = 0
 title = 'C.A.R.L.'
 BLUE = '#0B404E'
 CYAN = '#15EAEB'
-ORANGE = '#E87257'
+DARK_GREEN = '#04282B'
+GREEN = '#056F70'
+LIGHT_GREEN = '#39C5BD'
+ORANGE = '#AF3841'
 PURPLE = '#30293D'
 RED = '#8C2A25'
 TEST_COLOR = 'pink'
+WHITE = '#F2F2F2'
 NBR_LINES_IN_INFO = 3
 
 
@@ -29,18 +35,31 @@ def raw_path(filename:str):
 
 
 class GameSpace:
-    """Object representing the game space and all GUI methods"""
+    """Handles all GUI aspects of the game session:
 
-    def __init__(self, window) -> None:
-        self.spinflag = False
+    - Build the game space in the passed window (frames, canvas, labels, buttons, etc.)
+    - Callbacks for all buttons
+
+    It does not handle any logic of the game or the handling of the game session state.
+    It access this information throught the passed instance of GameSession and by calling its methods.
+    """
+
+    @monitor_fn
+    def __init__(self, window, session) -> None:
+        logthis(f"   Creating new GameSpace object")
+        self.window = window
+        self.spinflag = False # TODO: what role does this flag play?
+        self.session = session
+
         self.define_styles()
         self.build_layout(window)
         self.build_header()
         self.draw_canvas_bg()
         self.build_info_columns()
         self.build_footer()
-        print('GameSpace created')
+        logthis('   GameSpace created')
 
+    @monitor_fn
     def define_styles(self):
         # Define styles
         self.s = ttk.Style()
@@ -107,7 +126,8 @@ class GameSpace:
             anchor='center', 
             justify=tk.CENTER,
             )
-        
+
+    @monitor_fn
     def build_layout(self, window):
         """Build the game window, with empty canvas, and info frames"""
 
@@ -136,11 +156,13 @@ class GameSpace:
         self.canvas = tk.Canvas(self.main, width=1100, height=700, borderwidth=0, highlightthickness=0) 
         self.canvas.grid(row=1, column=1, columnspan=10, sticky='nw')
         
-        print('winfo: w:', window.winfo_screenwidth(), 'h: ',window.winfo_screenheight())
+        logthis('   winfo: w:', window.winfo_screenwidth(), 'h: ',window.winfo_screenheight())
 
+    @monitor_fn
     def build_header(self):
         pass
 
+    @monitor_fn
     def build_footer(self):
         self.score_label = ttk.Label(
             self.footer, text='Number Games Played:   \n', style='Main.TLabel',
@@ -150,7 +172,7 @@ class GameSpace:
         self.score_label.grid(row=1, column=1, columnspan=10, sticky='ns')
         
         self.time_left_label = ttk.Label(
-            self.footer, text='Time Left: x Min\n', style='Main.TLabel',
+            self.footer, text='Time Left: x:xx:xx\n', style='Main.TLabel',
             anchor='ne', justify=tk.CENTER, 
             width=40
             )
@@ -161,11 +183,13 @@ class GameSpace:
             style='Small.TButton')
         self.btn_reset.grid(row=1, column=31, columnspan=5)
 
+    @monitor_fn
     def draw_canvas_bg(self):
         self.img = ImageTk.PhotoImage(Image.open(ROOT/'assets/img/app_bg_1100x700_01.png'))
         self.canvas.create_image(0, 0, anchor='nw', image=self.img)
-        print('img info: w:', self.img.width(), 'h:', self.img.height())
+        logthis('   img info: w:', self.img.width(), 'h:', self.img.height())
 
+    @monitor_fn
     def build_info_columns(self):   
         # Create Info Frame
 
@@ -199,9 +223,10 @@ class GameSpace:
             )
         self.prompt_info.grid(row=22, rowspan=9, column=1, sticky='we')
 
-        self.btn_next = ttk.Button(self.info_fr, text='START', command=self.next_game, style='Main.TButton')
+        self.btn_next = ttk.Button(self.info_fr, text='START', command=self.click_next, style='Main.TButton')
         self.btn_next.grid(row=31, rowspan=1, column=1)
 
+    @monitor_fn
     def draw_games(self):
         games = self.session.games
         self.x = []
@@ -213,13 +238,13 @@ class GameSpace:
         position_r=280
         # self.canvas.create_text(midpt_x, midpt_y, text='Center', font=(None,12))
         angle = math.radians(360/self.nbr_games)
-        print(angle)
+        # logthis(angle)
         n_games = self.nbr_games - 1
         self.x.clear()
         self.y.clear()
         for i in range(0, self.nbr_games):
-            print(angle*i)
-            print(math.radians(90))
+            # logthis(angle*i)
+            # logthis(math.radians(90))
             if angle * i <= math.radians(90):
                 self.x.append(midpt_x+position_r*math.sin(angle*i)*1.5)
                 self.y.append(midpt_y-position_r*math.cos(angle*i))
@@ -233,10 +258,10 @@ class GameSpace:
                 self.x.append(midpt_x-position_r*math.cos(angle*i-math.radians(270))*1.5)
                 self.y.append(midpt_y-position_r*math.sin(angle*i-math.radians(270)))
             else:
-                print('Something bad happened.')
+                logthis('   Something bad happened.')
         #C.create_text(x[i], y[i], text=gameslist[i][0], font=(None,12))
-        print(self.x[i])
-        print(self.y[i])
+        # logthis(self.x[i])
+        # logthis(self.y[i])
 
         f = CYAN
         o = BLUE
@@ -254,174 +279,156 @@ class GameSpace:
                 font=(None,12, 'bold'), 
                 width=85, justify=tk.CENTER, anchor='center')
 
-        #randomise games
-        rand = list(range(len(games)))
-        random.shuffle(rand)
-        print(rand)
-
-    def start(self, session):
-        """Start the game, and link the game space and the game session"""
-        self.session = session
-
-    def next_game(self):
-        # First time the button is pressed
-        if self.session.game_started == False:
-            self.session.start_game()
+    @monitor_fn
+    def click_next(self):
+        """Calls session.pick_next_game() and update GUI accordingly to new state
+        
+        1. Update GameSpace assets when required (e.g. START to NEXT)
+        2. Pick next game
+        3. Update info on GameSpace (all info comes from self.session):
+            - Game Name
+            - Players
+            - Prompt
+            - Score, nbr of games played, time left, ...
+        """
+        logthis(f"   step: {self.session.step} curr: {self.session.current_game_idx}, prev: {self.session.previous_game_idx}")
+        # First time the button is pressed:
+        if self.session.session_started == False:
+            logthis(f"   Session not started yet (session_started = {self.session.session_started})")
             self.btn_next.config(text='NEXT')
-            playsound(raw_path('Air Horn.mp3'),False)
-            self.countdown()
+            sound_to_play = 'Air Horn.mp3'
+            playsound(raw_path(sound_to_play),False)
+    
         # When all game were played
-        if self.session.nbr_games_played >= self.nbr_games:
-            print('ALL GAMES FINISHED! RESET!')
-            playsound(raw_path('1up.mp3'),False)
-            self.update_score_lbl(session.nbr_games_played)
-            self.session.game_started = False
+        elif self.session.step >= self.nbr_games:
+            logthis(f"   All Games Played (nbr played: {self.session.nbr_games_played})! RESET!")
             self.btn_next['state'] = tk.DISABLED
-            r=50
-            prev_game = self.session.game_sequence[self.step]
-            self.canvas.create_oval(self.x[prev_game]-r-20,self.y[prev_game]-r,self.x[prev_game]+r+20,self.y[prev_game]+r,fill='red')
-            self.canvas.create_text(self.x[prev_game], self.y[prev_game], text=self.session.games[prev_game].name, font=(None,12, 'bold'), width=80)
-            self.btn_reset.configure(bg='green')
-            
+            sound_to_play = '1up.mp3'
+            playsound(raw_path(sound_to_play),False)
+
+        # Active session with games to be played
         else:
-            if session.nbr_games_played > 0:
-                session.pick_next_game()
+            logthis(f"   Ongoing session, nbr played: {self.session.nbr_games_played}")
+            sound_to_play = '1up.mp3'
+            playsound(raw_path(sound_to_play),False)
 
-                playsound(raw_path('1up.mp3'),False)
-                self.update_score_lbl(session.nbr_games_played)
-                # Update current and previous game drawing
-                r=55
-                cur_game = self.session.current_game_idx 
-                prev_game = self.session.previous_game_idx
+        self.session.pick_next_game()
+        self.mark_game_complete()
+        self.mark_game_current()
+        self.countdown() 
+        # FIXME countdown should be in first test clause above, but at that moment, start_time is not set yet  
 
-                if self.spinflag == False:
-                    self.spinflag = True
-                else:
-                    self.canvas.create_oval(
-                        self.x[prev_game]-r-20, self.y[prev_game]-r, 
-                        self.x[prev_game]+r+20, self.y[prev_game]+r, fill='red'
-                        )
-                    self.canvas.create_text(
-                        self.x[prev_game], self.y[prev_game], 
-                        text=self.session.games[prev_game].name, 
-                        font=(None,12, 'bold'), width=80
-                        )
+        if self.session.current_game_idx is not None:
+            gameidx = self.session.current_game_idx
+            self.update_game_info(gameidx)
+            self.update_player_info(gameidx)
 
-            # spinbubble = self.C.create_oval(x[spin_counter]-r-20,y[spin_counter]-r,x[spin_counter]+r+20,y[spin_counter]+r,fill='green2')
-            # spintext = self.C.create_text(x[spin_counter], y[spin_counter], text=gameslist[spin_counter][0], font=(None,12, 'bold'), width=80)
-            #print('Spinner Primed')
-            #Update labels
-            # self.session.pick_next_game()
-            next_game_idx = session.current_game_idx
-            self.update_game_info(next_game_idx)
-            print(next_game_idx)
-            self.update_player_info(next_game_idx)
-      
-    #   num_of_players = gameslist[rand[counter]][1]+gameslist[rand[counter]][2]
-    #   next_players = playerlist
-    #   if counter == 0:
-    #     random.shuffle(next_players)
-    #     i = 0
-    #   j = i + num_of_players
-    #   #print ('j = ' + str(j))
-    #   #print (len(next_players))
-    #   if num_of_players == 0:
-    #       self.players_label.configure(text='ALL PLAY')
-    #   elif j == len(next_players):
-    #       random.shuffle(next_players)
-    #       i = 0
-    #       j = i + num_of_players
-    #       self.players_label.configure(text=f"HOST: {next_players[i]}\n{','.join(next_players[i+1:j])}")
-    #   elif j > len(next_players):
-    #       #print('Exceeded')
-    #       i = j - num_of_players
-    #       players_remaining = next_players[i:len(next_players)]
-    #       players_needed = num_of_players - len(players_remaining)
-    #       #print('Players needed: '+str(players_needed))
-    #       while players_needed > 0:
-    #           players_remaining.append('WILDCARD')
-    #           players_needed -= 1
-    #       #print(players_remaining)
-    #       self.players_label.configure(text=f"HOST: {players_remaining[0]}\n{','.join(players_remaining[1:])}")
-    #       random.shuffle(next_players)
-    #       i = 0
-    #   else:
-    #       #print(next_players[0:num_of_players])
-    #       self.players_label.configure(text=f"HOST: {next_players[i]}\n{','.join(next_players[i+1:j])}")
-    #       #print(next_players)
-    #       #print(next_players[i:j])
-    #       i = j
-            
-    #   rand_promptlist = promptlist
-    #   random.shuffle(rand_promptlist)
-    #   if gameslist[rand[counter]][0]=='Genres' or gameslist[rand[counter]][0]=='Double Reverse Alphabet' or gameslist[rand[counter]][0]=='Pillars':
-    #     #print('Special')
-    #     print(gameslist[rand[counter]][3])
-    #     rand_prompt = rand_promptlist[counter]
-    #     next_prompt = gameslist[rand[counter]][3]
-    #     #print(rand_prompt)
-    #     self.prompts_label.configure(text=next_prompt+'\n'+'\n'+rand_prompt)
-    #   elif gameslist[rand[counter]][3]=='':
-    #     #print('Blank')
-    #     rand_prompt = rand_promptlist[counter]
-    #     print(rand_prompt)
-    #     self.prompts_label.configure(text=rand_prompt)
-    #   else:
-    #     #print('Text')
-    #     next_prompt = gameslist[rand[counter]][3]
-    #     self.prompts_label.configure(text=next_prompt)
-    #   counter += 1
-    #   #print(num_of_players)
+    @monitor_fn
+    def mark_game_complete(self):
+        """Mark previous game as complete"""
+        idx = self.session.previous_game_idx
+        logthis(f"   Marking game {idx} as complete")
+        if idx is None:
+            return
+        else:
+            r=55
+            self.canvas.create_oval(
+                self.x[idx]-r-20, self.y[idx]-r, 
+                self.x[idx]+r+20, self.y[idx]+r, fill=DARK_GREEN
+                )
+            self.canvas.create_text(
+                self.x[idx], self.y[idx], 
+                text=self.session.games[idx].name, 
+                font=(None,12, 'bold'), width=80,
+                fill=LIGHT_GREEN
+                )
+
+    @monitor_fn
+    def mark_game_current(self):
+        """Mark current game as active"""
+        idx = self.session.current_game_idx
+        logthis(f"   Marking game {idx} as complete")
+        if idx is None:
+            return
+        else:
+            r=55
+            self.canvas.create_oval(
+                self.x[idx]-r-20, self.y[idx]-r, 
+                self.x[idx]+r+20, self.y[idx]+r, 
+                fill=ORANGE
+                )
+            self.canvas.create_text(
+                self.x[idx], self.y[idx], 
+                text=self.session.games[idx].name, 
+                font=(None,12, 'bold'), width=80,
+                fill=WHITE
+                )
 
     def countdown(self, t=0):
-        """Start a countdown timer"""
-        print('Game Space Countdown')
-        # start timer, update timer label
+        """Update timer label and signal 5 min and 1 min with alarm, red color and clock ticks"""
+        timeleft = self.session.time_left
+        self.time_left_label.configure(text=f"Time Left: {self.hr_min_sec(timeleft)}")
+        # Sound alarm at 5 minutes left
+        if timedelta(seconds=60*5) <= timeleft <= timedelta(seconds=60*5+59):
+            playsound(raw_path('ahooga-horn.mp3'),False)
+        # Red timer and clock ticks from 60 seconds on
+        if timeleft <= timedelta(seconds=60):
+            self.time_left_label.configure(foreground = 'red')
+            playsound(raw_path('TickSound.mp3'),False)
+        self.window.after(1000,self.countdown)
 
+    @staticmethod
+    def hr_min_sec(td):
+        """Convert a timedelta object to a string of the form HH:MM:SS"""
+        return str(td).split('.')[0]
+    
+    @monitor_fn
     def reset(self):
-        pass
+        raise NotImplementedError('GameSpace.reset() not implemented')
 
+    @monitor_fn
     def update_score_lbl(self, n):
         """Update the score label on the game space window"""
-        self.score_label.configure(text='Games Played: '+str(n))
+        self.score_label.configure(text='Games Played: ' + str(n))
 
+    @monitor_fn
     def update_game_info(self, gameidx):
         """Update the game info section on the game space window"""
         game_name = self.session.games[gameidx].name
-        print(game_name)
+        logthis(f"  update info for gameidx: {gameidx} and name {game_name}")
         txt = f"{game_name}\n"
         self.game_info.configure(text=txt)
+        self.score_label.configure(text='Number Games Played: ' + str(self.session.nbr_games_played) + '\n')
 
+    @monitor_fn
     def update_player_info(self, gameidx):
         """Update the player info section on the game space window"""
         idxs, players = self.session.pick_players(self.session.games[gameidx])
-        print(idxs, players)
+        logthis(f"   player idxs: {idxs}, players: {players}")
         players_txt = f"{', '.join(players)}"
         txt = players_txt + '\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
         self.players_info.configure(text=txt)
 
-
-    def reset(self):
-        """Reset the game space"""
-        self.build()
-        print('Game Space Reset')
-
+    @monitor_fn
     def post_game_info(self, gameid):
         """Post info on game in the info section"""
-        print('Game Space Post Game Info')
+        raise NotImplementedError('GameSpace.post_game_info() not implemented')
 
+    @monitor_fn
     def spin_games(self, gameid, nbr_full_spins=4):
         """Spin the around the games nbr_full_spins times then stop on gameid"""
-        print('Game Space Spin Games')
+        raise NotImplementedError('GameSpace.spin_games() not implemented')
 
 
 if __name__ == '__main__':
     from gamesession import GameSession
     
     window = tk.Tk()
-    gamespace = GameSpace(window)
     session = GameSession()
-    gamespace.start(session)
+    gamespace = GameSpace(window, session)
+    # gamespace.start(session)
     gamespace.draw_games()
+
+    window.mainloop()
 
     window.mainloop()
