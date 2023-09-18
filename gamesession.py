@@ -165,7 +165,7 @@ class Game:
     def __init__(self, gameinfo:dict) -> None:
         logthis(f'   Creating new Game object for {gameinfo["name"]}')
         required_keys = ['name', 'nbr_players', 'nbr_audience']
-        optional_keys = ['prompt,', 'include', 'exclude', 'description', 'tips']
+        optional_keys = ['prompt', 'include', 'exclude', 'description', 'tips']
 
         for k, v in gameinfo.items():
             # self.__setattr__(k, v)

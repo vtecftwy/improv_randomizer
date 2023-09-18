@@ -165,7 +165,7 @@ class GameSpace:
     @monitor_fn
     def build_footer(self):
         self.score_label = ttk.Label(
-            self.footer, text='Number Games Played:   \n', style='Main.TLabel',
+            self.footer, text='Number Games Played: 0\n', style='Main.TLabel',
             anchor='ne', justify=tk.CENTER, 
             width=30
             )
@@ -178,10 +178,10 @@ class GameSpace:
             )
         self.time_left_label.grid(row=1, column=11, columnspan=10, sticky='ns')
 
-        self.btn_reset = ttk.Button(
-            self.footer, text='Reset', command=self.reset, 
-            style='Small.TButton')
-        self.btn_reset.grid(row=1, column=31, columnspan=5)
+        # self.btn_reset = ttk.Button(
+        #     self.footer, text='Reset', command=self.reset, 
+        #     style='Small.TButton')
+        # self.btn_reset.grid(row=1, column=31, columnspan=5)
 
     @monitor_fn
     def draw_canvas_bg(self):
@@ -398,7 +398,17 @@ class GameSpace:
         logthis(f"  update info for gameidx: {gameidx} and name {game_name}")
         txt = f"{game_name}\n"
         self.game_info.configure(text=txt)
+        
+        self.prompt_info.configure(text=self.game_prompt(gameidx))
+        
         self.score_label.configure(text='Number Games Played: ' + str(self.session.nbr_games_played) + '\n')
+
+    @monitor_fn
+    def game_prompt(self, gameidx):
+        """Return a random prompt from the list of prompts"""
+        prompt = getattr(self.session.games[gameidx], 'prompt', None)
+        prompt = prompt if prompt is not None else random.choice(self.session.promptlist)
+        return prompt + '\n'*3  if len(prompt) < 23 else prompt + '\n'*2 
 
     @monitor_fn
     def update_player_info(self, gameidx):
