@@ -14,18 +14,17 @@ sys.path.append(str(ROOT.absolute()))
 
 # Setup logging
 p2log = ROOT / 'logs/_short.log'
+
 logging.basicConfig(
-    filename=p2log, # D:\PyProjects\ai2\short\logs\_short.log
+    filename=p2log,
     encoding='utf-8',
     level=logging.INFO,
-    # format='%(message)s \n(Module: `%(module)s` Function: `%(funcName)s` line: %(lineno)s)'
     format='%(message)s'
     )
 logging.info(f"{'='*50}\nNew Session: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n{'='*50}")
 
 
-# Main loop
-# Create a game session     
+# Main loop   
 session = GameSession()
 window = tk.Tk()
 gamespace = GameSpace(window, session)

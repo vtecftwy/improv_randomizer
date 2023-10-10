@@ -182,11 +182,12 @@ class GameSpace:
 
     @monitor_fn
     def draw_canvas_bg(self):
+        """Draw canvas for bg image and game bubbles. Use default bg img unless ai2_bg_1100x700.png exists"""
         if (ROOT/'assets/img/ai2_bg_1100x700.png').is_file():
             background_img = ROOT/'assets/img/ai2_bg_1100x700.png'
         else:
             background_img = ROOT/'assets/img/bg_1100x700.png'
-        # self.img = ImageTk.PhotoImage(Image.open(ROOT/'assets/img/bg_1100x700.png'))
+
         self.img = ImageTk.PhotoImage(Image.open(background_img))
         self.canvas.create_image(0, 0, anchor='nw', image=self.img)
         logthis('   img info: w:', self.img.width(), 'h:', self.img.height())
@@ -213,8 +214,13 @@ class GameSpace:
             )
         self.players_info.grid(row=3, rowspan=4, column=1, sticky='we')
 
+        self.host_info_header = ttk.Label(
+            self.info_fr, text='Host:', style='Header.TLabel'
+        )
+        self.host_info_header.grid(row=6, rowspan=1, column=1, sticky='we')
+
         self.host_info = ttk.Label(
-            self.info_fr, text='Host: \n', style='Info.TLabel'
+            self.info_fr, text='\n', style='Info.TLabel'
             )
         self.host_info.grid(row=7, rowspan=1, column=1, sticky='we')
 
@@ -309,8 +315,13 @@ class GameSpace:
         elif self.session.step >= self.nbr_games:
             logthis(f"   All Games Played (nbr played: {self.session.nbr_games_played})! RESET!")
             self.btn_next['state'] = tk.DISABLED
+            self.btn_next['text'] = 'DONE!'
             sound_to_play = '1up.mp3'
             playsound(raw_path(sound_to_play),False)
+            self.session.previous_game_idx = self.session.current_game_idx
+            self.mark_game_complete()
+            self.score_label['text'] = f"Number Games Played: {self.nbr_games}\n"
+            return
 
         # Active session with games to be played
         else:
@@ -424,30 +435,20 @@ class GameSpace:
         players_txt = f"{', '.join(players)}"
         audience_txt = f"Audience members: {audience_members}" if audience_members > 0 else ''
         
-        txt = players_txt + '&\n' + audience_txt + '%\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
+        txt = players_txt + '\n' + audience_txt + '\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
         self.players_info.configure(text=txt)
 
         host = self.session.pick_host(self.session.games[gameidx])
-        txt = f"Host: {host}\n"
+        txt = f"{host}\n"
         self.host_info.configure(text=txt)
-
-    @monitor_fn
-    def post_game_info(self, gameid):
-        """Post info on game in the info section"""
-        raise NotImplementedError('GameSpace.post_game_info() not implemented')
-
-    @monitor_fn
-    def spin_games(self, gameid, nbr_full_spins=4):
-        """Spin the around the games nbr_full_spins times then stop on gameid"""
-        raise NotImplementedError('GameSpace.spin_games() not implemented')
 
 
 if __name__ == '__main__':
     pass
-    # from gamesession import GameSession
+    from gamesession import GameSession
     
-    # window = tk.Tk()
-    # session = GameSession()
-    # gamespace = GameSpace(window, session)
-    # gamespace.draw_games()
-    # window.mainloop()
+    session = GameSession()
+    window = tk.Tk()
+    gamespace = GameSpace(window, session)
+    gamespace.draw_games()
+    window.mainloop()
