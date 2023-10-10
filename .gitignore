@@ -110,7 +110,7 @@ ENV/
 config-api-keys.cfg
 
 # Image files to protect IPR
-/assets/img/
+/assets/img/ai2*
 
 # log files
 /logs/
