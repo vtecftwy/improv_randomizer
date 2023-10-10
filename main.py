@@ -29,13 +29,8 @@ logging.info(f"{'='*50}\nNew Session: {datetime.now().strftime('%Y-%m-%d %H:%M:%
 session = GameSession()
 window = tk.Tk()
 gamespace = GameSpace(window, session)
-# gamespace.start(session)
 gamespace.draw_games()
-
 window.mainloop()
-
-
-
 
 if __name__ == '__main__':
     pass

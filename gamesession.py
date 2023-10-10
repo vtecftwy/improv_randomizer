@@ -119,6 +119,22 @@ class GameSession:
         return idxs_picked.tolist(), player_names[idxs_picked].tolist()
 
     @monitor_fn
+    def pick_host(self, game):
+        """Pick the host using info in games.json file
+
+        If host_include is not empty, pick a host from host_include
+        Otherwise, pick a host from the cast, excluding the players in host_exclude
+        """
+        if game.host_include:
+            possible_hosts = game.host_include
+            print(f"   Hosts: {possible_hosts}")
+        else:
+            possible_hosts = [player.name for player in self.cast if player.name not in game.host_exclude]
+            print(f"   Hosts: {possible_hosts}")
+
+        return random.choice(possible_hosts)        
+
+    @monitor_fn
     def pick_next_game(self):
         """Pick the next game to play"""
         logthis(f"   curr: {self.current_game_idx}, prev: {self.previous_game_idx}, games left  {len(self.game_sequence)}")
@@ -142,7 +158,6 @@ class GameSession:
             self.current_game_idx = None
             self.session_finished = True
         logthis(f"   step: {self.step} nbr_games_played: {self.nbr_games_played} prev: {self.previous_game_idx}, curr: {self.current_game_idx}, finished: {self.session_finished}")
-
 
     @property
     def time_left(self) -> dt.timedelta:

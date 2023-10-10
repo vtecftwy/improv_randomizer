@@ -20,11 +20,13 @@ CYAN = '#15EAEB'
 DARK_GREEN = '#04282B'
 GREEN = '#056F70'
 LIGHT_GREEN = '#39C5BD'
+FLASHY_GREEN = '#00FF00'
 ORANGE = '#AF3841'
 PURPLE = '#30293D'
 RED = '#8C2A25'
 TEST_COLOR = 'pink'
 WHITE = '#F2F2F2'
+BLACK = '#020202'
 NBR_LINES_IN_INFO = 3
 
 
@@ -178,14 +180,14 @@ class GameSpace:
             )
         self.time_left_label.grid(row=1, column=11, columnspan=10, sticky='ns')
 
-        # self.btn_reset = ttk.Button(
-        #     self.footer, text='Reset', command=self.reset, 
-        #     style='Small.TButton')
-        # self.btn_reset.grid(row=1, column=31, columnspan=5)
-
     @monitor_fn
     def draw_canvas_bg(self):
-        self.img = ImageTk.PhotoImage(Image.open(ROOT/'assets/img/app_bg_1100x700_01.png'))
+        if (ROOT/'assets/img/ai2_bg_1100x700.png').is_file():
+            background_img = ROOT/'assets/img/ai2_bg_1100x700.png'
+        else:
+            background_img = ROOT/'assets/img/bg_1100x700.png'
+        # self.img = ImageTk.PhotoImage(Image.open(ROOT/'assets/img/bg_1100x700.png'))
+        self.img = ImageTk.PhotoImage(Image.open(background_img))
         self.canvas.create_image(0, 0, anchor='nw', image=self.img)
         logthis('   img info: w:', self.img.width(), 'h:', self.img.height())
 
@@ -196,23 +198,25 @@ class GameSpace:
         self.info_fr = ttk.Frame(self.main, style='Info.TFrame')
         self.info_fr.grid(row=1, column=11, sticky='nesw')
 
-        # self.game_info_header = ttk.Label(
-        #     self.info_fr, text='Game name:', style='Header.TLabel'
-        #     )
-        # self.game_info_header.grid(row=1, rowspan=1, column=1, sticky='we')
         self.game_info = ttk.Label(
             self.info_fr, text='Game to play\n', style='GameName.TLabel'
             )
-        self.game_info.grid(row=2, rowspan=1, column=1, sticky='we')
+        self.game_info.grid(row=1, rowspan=1, column=1, sticky='we')
         
         self.players_info_header = ttk.Label(
             self.info_fr, text='Players:', style='Header.TLabel'
             )
-        self.players_info_header.grid(row=11, rowspan=1, column=1, sticky='we')
+        self.players_info_header.grid(row=2, rowspan=1, column=1, sticky='we')
+
         self.players_info = ttk.Label(
             self.info_fr, text='\n' * NBR_LINES_IN_INFO, style='Info.TLabel'
             )
-        self.players_info.grid(row=12, rowspan=9, column=1, sticky='we')
+        self.players_info.grid(row=3, rowspan=4, column=1, sticky='we')
+
+        self.host_info = ttk.Label(
+            self.info_fr, text='Host: \n', style='Info.TLabel'
+            )
+        self.host_info.grid(row=7, rowspan=1, column=1, sticky='we')
 
         self.prompt_info_header = ttk.Label(
             self.info_fr, text='Prompt:', style='Header.TLabel'
@@ -298,6 +302,8 @@ class GameSpace:
             self.btn_next.config(text='NEXT')
             sound_to_play = 'Air Horn.mp3'
             playsound(raw_path(sound_to_play),False)
+            self.session.pick_next_game()
+            self.countdown() 
     
         # When all game were played
         elif self.session.step >= self.nbr_games:
@@ -311,12 +317,10 @@ class GameSpace:
             logthis(f"   Ongoing session, nbr played: {self.session.nbr_games_played}")
             sound_to_play = '1up.mp3'
             playsound(raw_path(sound_to_play),False)
+            self.session.pick_next_game()
 
-        self.session.pick_next_game()
         self.mark_game_complete()
         self.mark_game_current()
-        self.countdown() 
-        # FIXME countdown should be in first test clause above, but at that moment, start_time is not set yet  
 
         if self.session.current_game_idx is not None:
             gameidx = self.session.current_game_idx
@@ -347,7 +351,7 @@ class GameSpace:
     def mark_game_current(self):
         """Mark current game as active"""
         idx = self.session.current_game_idx
-        logthis(f"   Marking game {idx} as complete")
+        logthis(f"   Marking game {idx} as current")
         if idx is None:
             return
         else:
@@ -355,13 +359,13 @@ class GameSpace:
             self.canvas.create_oval(
                 self.x[idx]-r-20, self.y[idx]-r, 
                 self.x[idx]+r+20, self.y[idx]+r, 
-                fill=ORANGE
+                fill=FLASHY_GREEN
                 )
             self.canvas.create_text(
                 self.x[idx], self.y[idx], 
                 text=self.session.games[idx].name, 
                 font=(None,12, 'bold'), width=80,
-                fill=WHITE
+                fill=BLACK
                 )
 
     def countdown(self, t=0):
@@ -412,12 +416,20 @@ class GameSpace:
 
     @monitor_fn
     def update_player_info(self, gameidx):
-        """Update the player info section on the game space window"""
+        """Update the player and host info section on the game space window"""
         idxs, players = self.session.pick_players(self.session.games[gameidx])
-        logthis(f"   player idxs: {idxs}, players: {players}")
+        audience_members = self.session.games[gameidx].nbr_audience
+        logthis(f"   player idxs: {idxs}, players: {players}, audience: {audience_members}")
+        
         players_txt = f"{', '.join(players)}"
-        txt = players_txt + '\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
+        audience_txt = f"Audience members: {audience_members}" if audience_members > 0 else ''
+        
+        txt = players_txt + '&\n' + audience_txt + '%\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
         self.players_info.configure(text=txt)
+
+        host = self.session.pick_host(self.session.games[gameidx])
+        txt = f"Host: {host}\n"
+        self.host_info.configure(text=txt)
 
     @monitor_fn
     def post_game_info(self, gameid):
@@ -431,14 +443,11 @@ class GameSpace:
 
 
 if __name__ == '__main__':
-    from gamesession import GameSession
+    pass
+    # from gamesession import GameSession
     
-    window = tk.Tk()
-    session = GameSession()
-    gamespace = GameSpace(window, session)
-    # gamespace.start(session)
-    gamespace.draw_games()
-
-    window.mainloop()
-
-    window.mainloop()
+    # window = tk.Tk()
+    # session = GameSession()
+    # gamespace = GameSpace(window, session)
+    # gamespace.draw_games()
+    # window.mainloop()
