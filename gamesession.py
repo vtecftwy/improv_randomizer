@@ -125,6 +125,7 @@ class GameSession:
         If host_include is not empty, pick a host from host_include
         Otherwise, pick a host from the cast, excluding the players in host_exclude
         """
+        # FIXME: there is a problem, this can pick as host a cast member who is playing the game
         if game.host_include:
             possible_hosts = game.host_include
             print(f"   Hosts: {possible_hosts}")

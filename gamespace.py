@@ -17,16 +17,17 @@ ss_default = 0
 title = 'C.A.R.L.'
 BLUE = '#0B404E'
 CYAN = '#15EAEB'
-DARK_GREEN = '#04282B'
 GREEN = '#056F70'
+DARK_GREEN = '#04282B'
 LIGHT_GREEN = '#39C5BD'
 FLASHY_GREEN = '#00FF00'
 ORANGE = '#AF3841'
 PURPLE = '#30293D'
 RED = '#8C2A25'
-TEST_COLOR = 'pink'
 WHITE = '#F2F2F2'
 BLACK = '#020202'
+TEST_COLOR = 'pink'
+
 NBR_LINES_IN_INFO = 3
 
 
@@ -445,10 +446,10 @@ class GameSpace:
 
 if __name__ == '__main__':
     pass
-    from gamesession import GameSession
+    # from gamesession import GameSession
     
-    session = GameSession()
-    window = tk.Tk()
-    gamespace = GameSpace(window, session)
-    gamespace.draw_games()
-    window.mainloop()
+    # session = GameSession()
+    # window = tk.Tk()
+    # gamespace = GameSpace(window, session)
+    # gamespace.draw_games()
+    # window.mainloop()
