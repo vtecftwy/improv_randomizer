@@ -87,7 +87,7 @@ class GameSession:
 
     @monitor_fn
     def pick_players(self, game, method='linear', factor=25, l=0.5):
-        """Pick players for the game
+        """Pick players and host for the game
 
         The method ramdomly picks players from the cast for the given game.
         Picking gives priority to players who played less games so far in this session.
@@ -125,7 +125,7 @@ class GameSession:
         If host_include is not empty, pick a host from host_include
         Otherwise, pick a host from the cast, excluding the players in host_exclude
         """
-        # FIXME: there is a problem, this can pick as host a cast member who is playing the game
+        # FIXME: merge this method into pick_players in order to avoid picking host who is also a player
         if game.host_include:
             possible_hosts = game.host_include
             print(f"   Hosts: {possible_hosts}")

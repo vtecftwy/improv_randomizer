@@ -9,7 +9,7 @@ from gamespace import GameSpace
 from gamesession import GameSession
 
 # Setup path to package and modules
-# TODO: correct this line after transforming this is a package
+# TODO: correct this line after transforming this into a package
 ROOT = Path(__file__).parent
 sys.path.append(str(ROOT.absolute()))
 
