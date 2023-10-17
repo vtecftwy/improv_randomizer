@@ -116,6 +116,10 @@ class GameSession:
         nbr_players = game.nbr_players if game.nbr_players > 0 else sum(player_joining_game) # nbr_players is 0 if the game is for the whole cast
         idxs_picked = np.sort(np.random.choice(np.arange(self.nbr_players), size=nbr_players, p=probabilities, replace=False))
 
+        # Increment nbr_games_played for the picked players
+        for player_idx in idxs_picked:
+            self.cast[player_idx].nbr_games_played += 1
+
         return idxs_picked.tolist(), player_names[idxs_picked].tolist()
 
     @monitor_fn
@@ -128,10 +132,10 @@ class GameSession:
         # FIXME: there is a problem, this can pick as host a cast member who is playing the game
         if game.host_include:
             possible_hosts = game.host_include
-            print(f"   Hosts: {possible_hosts}")
+            logthis(f"   Hosts: {possible_hosts}")
         else:
             possible_hosts = [player.name for player in self.cast if player.name not in game.host_exclude]
-            print(f"   Hosts: {possible_hosts}")
+            logthis(f"   Hosts: {possible_hosts}")
 
         return random.choice(possible_hosts)        
 
