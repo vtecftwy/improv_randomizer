@@ -14,14 +14,16 @@ from utils import *
 # Define game parameters
 mm_default = 45
 ss_default = 0
-title = 'C.A.R.L.'
+DISPLAY_SIZE = '1920x1080'
+TITLE = 'C.A.R.L.'
+BG_DEFAULT = '#0B404E'
 BLUE = '#0B404E'
 CYAN = '#15EAEB'
 GREEN = '#056F70'
 DARK_GREEN = '#04282B'
 LIGHT_GREEN = '#39C5BD'
 FLASHY_GREEN = '#00FF00'
-ORANGE = '#AF3841'
+ORANGE = '#FF9933'
 PURPLE = '#30293D'
 RED = '#8C2A25'
 WHITE = '#F2F2F2'
@@ -29,7 +31,6 @@ BLACK = '#020202'
 TEST_COLOR = 'pink'
 
 NBR_LINES_IN_INFO = 3
-
 
 ROOT = Path(__file__).resolve().parent
 
@@ -51,7 +52,6 @@ class GameSpace:
     def __init__(self, window, session) -> None:
         logthis(f"   Creating new GameSpace object")
         self.window = window
-        self.spinflag = False # TODO: what role does this flag play?
         self.session = session
 
         self.define_styles()
@@ -64,11 +64,11 @@ class GameSpace:
 
     @monitor_fn
     def define_styles(self):
-        # Define styles
+        """Set predefined styles for tk abd tkk widgets"""
         self.s = ttk.Style()
         # Frames
         self.s.configure(
-            'Main.TFrame', background=BLUE, 
+            'Main.TFrame', background=BG_DEFAULT, 
             relief=tk.NONE, borderwidth=0,
             )
         self.s.configure(
@@ -76,18 +76,28 @@ class GameSpace:
             relief=tk.NONE, borderwidth=0,
             )
         self.s.configure(
-            'Info.TFrame', background=BLUE, 
+            'Info.TFrame', background=DARK_GREEN, 
             relief=tk.NONE, borderwidth=0,
             # padding=(5,5)
             )
         # Labels
         self.s.configure(
-            'Main.TLabel', background=BLUE, foreground='white', 
+            'Main.TLabel', background=BG_DEFAULT, foreground=WHITE, 
             font=(None, 20, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
-            'Info.TLabel', background=BLUE, foreground='white', 
+            'Orange.TLabel', background=ORANGE, foreground=WHITE, 
+            font=(None, 20, 'bold'), 
+            relief=tk.NONE
+            )
+        self.s.configure(
+            'Purple.TLabel', background=PURPLE, foreground=WHITE, 
+            font=(None, 20, 'bold'), 
+            relief=tk.NONE
+            )
+        self.s.configure(
+            'Info.TLabel', background=DARK_GREEN, foreground=WHITE, 
             font=(None, 20, 'normal'), 
             width=25,
             wraplength=350,
@@ -97,7 +107,7 @@ class GameSpace:
             # padding=(5,5)
             )
         self.s.configure(
-            'Header.TLabel', background=BLUE, foreground='white', 
+            'Header.TLabel', background=DARK_GREEN, foreground=CYAN, 
             font=(None, 20, 'bold'), 
             # width=25, 
             anchor='we', justify=tk.CENTER,
@@ -106,7 +116,7 @@ class GameSpace:
             # padding=(5,5)
             )
         self.s.configure(
-            'GameName.TLabel', background=BLUE, foreground=CYAN, 
+            'GameName.TLabel', background=DARK_GREEN, foreground=CYAN, 
             font=(None, 24, 'bold'), 
             # width=25, 
             anchor='center', justify=tk.CENTER,
@@ -133,21 +143,15 @@ class GameSpace:
     @monitor_fn
     def build_layout(self, window):
         """Build the game window, with empty canvas, and info frames"""
-
-        # Format the game window (Window bar=40px, Windows taskbar = 40 px)
-        window.title(title)
-        window.configure(background=BLUE)
-        window.geometry('1920x1080')
+        
+        # Format the game window (Window top bar=40px, Windows taskbar=40 px)
+        window.title(TITLE)
+        window.configure(background=BG_DEFAULT)
+        window.geometry(DISPLAY_SIZE)
 
         # Set frames
         self.header = ttk.Frame(window, width=1900, heigh=20, style='Main.TFrame')
         self.header.grid(row=1, column=1, sticky='we')
-
-        # self.header_text = ttk.Label(
-        #     self.header, text='Played Games: ', style='Main.TLabel',
-        #     anchor='center', justify=tk.LEFT, 
-        #     )
-        # self.header_text.grid(row=1, column=1, columnspan=2, sticky='we')
 
         self.main = ttk.Frame(window, width=1900, heigh=700, style='Main.TFrame')
         self.main.grid(row=2, column=1, sticky='we')
@@ -169,21 +173,25 @@ class GameSpace:
     def build_footer(self):
         self.score_label = ttk.Label(
             self.footer, text='Number Games Played: 0\n', style='Main.TLabel',
-            anchor='ne', justify=tk.CENTER, 
-            width=30
+            anchor='n', width=40
             )
         self.score_label.grid(row=1, column=1, columnspan=10, sticky='ns')
         
         self.time_left_label = ttk.Label(
             self.footer, text='Time Left: x:xx:xx\n', style='Main.TLabel',
-            anchor='ne', justify=tk.CENTER, 
-            width=40
+            anchor='n', width=35
             )
         self.time_left_label.grid(row=1, column=11, columnspan=10, sticky='ns')
+        
+        self.btn_next = ttk.Button(
+            self.footer, text='START', command=self.click_next, style='Main.TButton'
+            )
+        self.btn_next.grid(row=1, column=21, columnspan=10)
 
     @monitor_fn
     def draw_canvas_bg(self):
         """Draw canvas for bg image and game bubbles. Use default bg img unless ai2_bg_1100x700.png exists"""
+        
         if (ROOT/'assets/img/ai2_bg_1100x700.png').is_file():
             background_img = ROOT/'assets/img/ai2_bg_1100x700.png'
         else:
@@ -196,34 +204,33 @@ class GameSpace:
     @monitor_fn
     def build_info_columns(self):   
         # Create Info Frame
-
         self.info_fr = ttk.Frame(self.main, style='Info.TFrame')
         self.info_fr.grid(row=1, column=11, sticky='nesw')
 
         self.game_info = ttk.Label(
             self.info_fr, text='Game to play\n', style='GameName.TLabel'
             )
-        self.game_info.grid(row=1, rowspan=1, column=1, sticky='we')
+        self.game_info.grid(row=1, rowspan=2, column=1, sticky='we')
         
         self.players_info_header = ttk.Label(
             self.info_fr, text='Players:', style='Header.TLabel'
             )
-        self.players_info_header.grid(row=2, rowspan=1, column=1, sticky='we')
+        self.players_info_header.grid(row=3, rowspan=1, column=1, sticky='we')
 
         self.players_info = ttk.Label(
-            self.info_fr, text='\n' * NBR_LINES_IN_INFO, style='Info.TLabel'
+            self.info_fr, text='\n' + '\n' * NBR_LINES_IN_INFO, style='Info.TLabel'
             )
-        self.players_info.grid(row=3, rowspan=4, column=1, sticky='we')
+        self.players_info.grid(row=4, rowspan=4, column=1, sticky='we')
 
         self.host_info_header = ttk.Label(
             self.info_fr, text='Host:', style='Header.TLabel'
         )
-        self.host_info_header.grid(row=6, rowspan=1, column=1, sticky='we')
+        self.host_info_header.grid(row=10, rowspan=1, column=1, sticky='we')
 
         self.host_info = ttk.Label(
             self.info_fr, text='\n', style='Info.TLabel'
             )
-        self.host_info.grid(row=7, rowspan=1, column=1, sticky='we')
+        self.host_info.grid(row=11, rowspan=1, column=1, sticky='we')
 
         self.prompt_info_header = ttk.Label(
             self.info_fr, text='Prompt:', style='Header.TLabel'
@@ -233,9 +240,6 @@ class GameSpace:
             self.info_fr, text='\n' * NBR_LINES_IN_INFO, style='Info.TLabel'
             )
         self.prompt_info.grid(row=22, rowspan=9, column=1, sticky='we')
-
-        self.btn_next = ttk.Button(self.info_fr, text='START', command=self.click_next, style='Main.TButton')
-        self.btn_next.grid(row=31, rowspan=1, column=1)
 
     @monitor_fn
     def draw_games(self):
@@ -446,10 +450,10 @@ class GameSpace:
 
 if __name__ == '__main__':
     pass
-    # from gamesession import GameSession
+    from gamesession import GameSession
     
-    # session = GameSession()
-    # window = tk.Tk()
-    # gamespace = GameSpace(window, session)
-    # gamespace.draw_games()
-    # window.mainloop()
+    session = GameSession()
+    window = tk.Tk()
+    gamespace = GameSpace(window, session)
+    gamespace.draw_games()
+    window.mainloop()

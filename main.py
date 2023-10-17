@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 import tkinter as tk
 
@@ -8,12 +9,14 @@ from gamespace import GameSpace
 from gamesession import GameSession
 
 # Setup path to package and modules
-# TODO: correct this line after transforming this is a package
+# TODO: correct this line after transforming this into a package
 ROOT = Path(__file__).parent
 sys.path.append(str(ROOT.absolute()))
 
 # Setup logging
 p2log = ROOT / 'logs/_short.log'
+os.makedirs(p2log.parent, exist_ok=True)
+if not p2log.exists(): p2log.touch()
 
 logging.basicConfig(
     filename=p2log,
