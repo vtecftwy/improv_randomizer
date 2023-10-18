@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from datetime import datetime
 from functools import wraps
 from pathlib import Path
@@ -10,7 +11,6 @@ ROOT = Path(__file__).parent
 os.makedirs(ROOT / 'logs', exist_ok=True)
 
 def logthis(*args):
-    print(*args)
     text = ' '.join([str(element) for element in args])
     logging.info(text)
 
@@ -26,7 +26,7 @@ def monitor_fn(fn):
 
 def setup_logging(filename=None):
     
-    # Setup logging
+    # Setup logging file
     if filename is None:
         p2log = ROOT / 'logs/_short.log'
     else:

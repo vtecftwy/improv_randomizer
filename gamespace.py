@@ -43,7 +43,8 @@ class GameSpace:
     - Callbacks for all buttons
 
     It does not handle any logic of the game or the handling of the game session state.
-    It access this information throught the passed instance of GameSession and by calling its methods.
+    It access this information throught `session`, the passed instance of GameSession and 
+    by calling its methods.
     """
 
     @monitor_fn
@@ -51,14 +52,14 @@ class GameSpace:
         logthis(f"   Creating new GameSpace object")
         self.window = window
         self.session = session
-
         self.define_styles()
         self.build_layout(window)
         self.build_header()
         self.draw_canvas_bg()
         self.build_info_columns()
         self.build_footer()
-        logthis('   GameSpace created')
+        self.game_next_audio_fnames = []
+        logthis('   GameSpace created')          
 
     @monitor_fn
     def define_styles(self):
@@ -301,7 +302,7 @@ class GameSpace:
     def click_next(self):
         """Calls session.pick_next_game() and update GUI accordingly to new state
         
-        1. Update GameSpace assets when required (e.g. START to NEXT)
+        1. Update GameSpace assets when required (e.g. START to NEXT to GAME OVER or DONE)
         2. Pick next game
         3. Update info on GameSpace (all info comes from self.session):
             - Game Name
@@ -309,14 +310,15 @@ class GameSpace:
             - Prompt
             - Score, nbr of games played, time left, ...
         """
-        logthis(f"   step: {self.session.step} curr: {self.session.current_game_idx}, prev: {self.session.previous_game_idx}")
+        logthis(f"   Step: {self.session.step} Current Game: {self.session.current_game_idx}, Previous Game: {self.session.previous_game_idx}")
         # First time the button is pressed:
         if self.session.session_started == False:
             logthis(f"   Session not started yet (session_started = {self.session.session_started})")
             self.btn_next.config(text='NEXT')
-            sound_to_play = 'Air Horn.mp3'
+            sound_to_play = 'game-start.mp3'
             playsound(raw_path(sound_to_play),False)
             self.session.pick_next_game()
+            logthis(f"   Start self.countdown()")
             self.countdown() 
     
         # When all game were played
@@ -324,21 +326,23 @@ class GameSpace:
             logthis(f"   All Games Played (nbr played: {self.session.nbr_games_played})! RESET!")
             self.btn_next['state'] = tk.DISABLED
             self.btn_next['text'] = 'DONE!'
-            sound_to_play = '1up.mp3'
+            sound_to_play = 'game-all-played.mp3'
             playsound(raw_path(sound_to_play),False)
             self.session.previous_game_idx = self.session.current_game_idx
-            self.mark_game_complete()
+            self.mark_game_completed()
             self.score_label['text'] = f"Number Games Played: {self.nbr_games}\n"
+            self.session.session_finished = True
             return
 
-        # Active session with games to be played
+        # Active session with remaining games to be played
         else:
-            logthis(f"   Ongoing session, nbr played: {self.session.nbr_games_played}")
-            sound_to_play = '1up.mp3'
+            logthis(f"   Ongoing session, nbr games played: {self.session.nbr_games_played}")
+            # sound_to_play = random.choice(self.game_next_audio_fnames)
+            sound_to_play = self.pick_next_game_audio()
             playsound(raw_path(sound_to_play),False)
             self.session.pick_next_game()
 
-        self.mark_game_complete()
+        self.mark_game_completed()
         self.mark_game_current()
 
         if self.session.current_game_idx is not None:
@@ -347,7 +351,7 @@ class GameSpace:
             self.update_player_info(gameidx)
 
     @monitor_fn
-    def mark_game_complete(self):
+    def mark_game_completed(self):
         """Mark previous game as complete"""
         idx = self.session.previous_game_idx
         logthis(f"   Marking game {idx} as complete")
@@ -387,30 +391,42 @@ class GameSpace:
                 fill=BLACK
                 )
 
+    def pick_next_game_audio(self):
+        if self.game_next_audio_fnames == []:
+            self.game_next_audio_fnames = [p.name for p in (ROOT/'assets/audio').glob('game-next*.mp3')]
+            random.shuffle(self.game_next_audio_fnames)
+        logthis(f"   Current `game_next_audio_fnames`: {self.game_next_audio_fnames}")
+        return self.game_next_audio_fnames.pop(0)
+
     def countdown(self, t=0):
-        """Update timer label and signal 5 min and 1 min with alarm, red color and clock ticks"""
+        """Update timer label and signal 5 min and 1 min with alarm, red color and clock ticks
+
+        Updated every second by calling itself recursively
+        """
         timeleft = self.session.time_left
         self.time_left_label.configure(text=f"Time Left: {self.hr_min_sec(timeleft)}")
 
         # Sound alarm when only 5 minutes left and make timer red
         if timedelta(seconds=60*5-30) <= timeleft <= timedelta(seconds=60*5):
             if not self.session.last_five_minutes_starded:
-                playsound(raw_path('ahooga-horn.mp3'),False)
+                sound_to_play = 'game-last-minute.mp3'
+                playsound(raw_path(sound_to_play),False)
                 self.session.last_five_minutes_starded = True
                 self.time_left_label.configure(foreground = 'red')
 
         # Tick sound ever second from 60 seconds down to 0
         if timedelta(seconds=0) < timeleft <= timedelta(seconds=60):
-            # self.time_left_label.configure(foreground = 'red')
-            playsound(raw_path('TickSound.mp3'),False)
+            playsound(raw_path('game-tick-sound.mp3'),False)
 
         # Disable next button, change button text and play game over sound when time left <= 0
         if timeleft <= timedelta(seconds=0):
             if not self.session.session_finished:
                 self.session.session_finished = True
-                playsound(raw_path('endhorn.mp3'),False)
+                sound_to_play = 'game-over.mp3'
+                playsound(raw_path(sound_to_play),False)
             self.btn_next['state'] = tk.DISABLED
             self.btn_next['text'] = 'GAME OVER!'
+
         self.window.after(1000,self.countdown)
 
     @staticmethod
@@ -421,11 +437,6 @@ class GameSpace:
     @monitor_fn
     def reset(self):
         raise NotImplementedError('GameSpace.reset() not implemented')
-
-    @monitor_fn
-    def update_score_lbl(self, n):
-        """Update the score label on the game space window"""
-        self.score_label.configure(text='Games Played: ' + str(n))
 
     @monitor_fn
     def update_game_info(self, gameidx):
@@ -466,10 +477,10 @@ class GameSpace:
 
 if __name__ == '__main__':
     pass
-    from gamesession import GameSession
+    # from gamesession import GameSession
     
-    session = GameSession()
-    window = tk.Tk()
-    gamespace = GameSpace(window, session)
-    gamespace.draw_games()
-    window.mainloop()
+    # session = GameSession()
+    # window = tk.Tk()
+    # gamespace = GameSpace(window, session)
+    # gamespace.draw_games()
+    # window.mainloop()

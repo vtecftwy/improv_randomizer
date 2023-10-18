@@ -206,14 +206,7 @@ class GameSession:
         left_time =  self.start_time + GAME_DURATION - dt.datetime.now()
         zero = dt.timedelta(seconds=0)
         return max(left_time, zero)
-        
-    # @staticmethod
-    # def masked_softmax(x, mask):
-    #     """Calculate softmax of x, using only indices where mask==True, all others = 0"""
-    #     selected_idx = np.arange(len(x))[mask]
-    #     softmax = np.zeros_like(x)
-    #     softmax[selected_idx] = np.exp(x[selected_idx]) / np.sum(np.exp(x[selected_idx]), axis=0)
-    #     return softmax
+
 
 class Game:
     """Object including all information and methods related to a game"""
@@ -294,11 +287,11 @@ class Player:
 
 if __name__ == '__main__':
     pass
-    print('start')
-    setup_logging()
-    session = GameSession()
-    # session.pick_next_game()
-    session.current_game_idx = 14
-    session.pick_cast(session.games[session.current_game_idx])
-    session.pick_cast(session.games[session.current_game_idx])
-    session.pick_cast(session.games[session.current_game_idx])
+
+    # setup_logging()
+    # session = GameSession()
+    # # session.pick_next_game()
+    # session.current_game_idx = 14
+    # session.pick_cast(session.games[session.current_game_idx])
+    # session.pick_cast(session.games[session.current_game_idx])
+    # session.pick_cast(session.games[session.current_game_idx])
