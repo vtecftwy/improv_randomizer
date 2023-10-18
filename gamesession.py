@@ -41,6 +41,7 @@ class GameSession:
         self.nbr_games_played = None
         self.current_game_idx = None
         self.previous_game_idx = None
+        self.last_five_minutes_starded = False
 
         logthis(f"   step: {self.step}, games played: {self.nbr_games_played}, curr: {self.current_game_idx}, prev: {self.previous_game_idx}")
 
@@ -85,59 +86,94 @@ class GameSession:
         for player in self.cast:
             print(player)
 
-    @monitor_fn
-    def pick_players(self, game, method='linear', factor=25, l=0.5):
-        """Pick players and host for the game
+    @staticmethod
+    def compute_probs(counts, cast_masks, method='linear', factor=25, l=0.5):
+        """Compute probabilities for picking cast member based on counts and cast_mask
 
-        The method ramdomly picks players from the cast for the given game.
-        Picking gives priority to players who played less games so far in this session.
-        It also excludes players listed in the exclusion list for the game.
-
-        Returns: 
-            idxs_picked:  list of indexes in `session.cast` for picked players
-            player_names: list of names of picked players
+        Probabilities are computed using a linear or exponential function of the counts, and then
+        are normalized using a softmax for those indexes not masked by cast_mask.
         """
-        player_names = np.array([player.name for player in self.cast])
-        # player_joining_game is a boolean list, True if player can join the game, False if it is excluded
-        player_joining_game = [game.name not in player.game_exclusion_list for player in self.cast]
-        player_game_count = np.array([player.nbr_games_played for player in self.cast])
-        
+
         if method == 'linear':
-            weights = factor/(player_game_count+1)
+            weights = factor/(counts + 1)
         elif method == 'exponential':
             lambda_ = l
-            weights = np.exp(-lambda_ * player_game_count)
+            weights = np.exp(-lambda_ * counts)
         else:
             raise AttributeError(f'Unknown method {method}, should be `linear` or `exponential`')
-        
-        probabilities = self.masked_softmax(weights, mask=player_joining_game)
-        
-        # Draw a sample from the discrete probability distribution
-        nbr_players = game.nbr_players if game.nbr_players > 0 else sum(player_joining_game) # nbr_players is 0 if the game is for the whole cast
-        idxs_picked = np.sort(np.random.choice(np.arange(self.nbr_players), size=nbr_players, p=probabilities, replace=False))
 
-        # Increment nbr_games_played for the picked players
-        for player_idx in idxs_picked:
-            self.cast[player_idx].nbr_games_played += 1
+        # Calculate softmax of weights, using only indices where cast_mask==True, all others = 0
+        selected_idx = np.arange(len(weights))[cast_masks]
+        softmax = np.zeros_like(weights)
+        softmax[selected_idx] = np.exp(weights[selected_idx]) / np.sum(np.exp(weights[selected_idx]), axis=0)
 
-        return idxs_picked.tolist(), player_names[idxs_picked].tolist()
+        return softmax
 
     @monitor_fn
-    def pick_host(self, game):
-        """Pick the host using info in games.json file
+    def pick_cast(self, game):
+        """Pick host and players for the game
 
-        If host_include is not empty, pick a host from host_include
-        Otherwise, pick a host from the cast, excluding the players in host_exclude
+        Randomly select a host and players for the game, based on:
+        - the host_exclude and host_include lists for the game
+        - the player exlude list for the game
+        - the nbr_games_hosted attribute of each cast member (how many games already hosted so far)
+        - the nbr_games_played attribute of each cast member (how many games already hosted so far)
+
+        Returns:
+            idxs_host:    index of host in `self.cast`
+            host_name:    name of host
+            idxs_players: list of indexes in `self.cast` for picked players
+            player_names: list of names of picked players
         """
-        # FIXME: merge this method into pick_players in order to avoid picking host who is also a player
+
+        cast_names = np.array([player.name for player in self.cast])
+        logthis(f"   Cast Names: {cast_names}")
+
+        # Pick one host for the game
+        # 1. Pick possible hosts based on host_include and host_exclude lists
         if game.host_include:
             possible_hosts = game.host_include
-            logthis(f"   Hosts: {possible_hosts}")
+            logthis(f"   Possible hosts: {possible_hosts}. From host_include list")
         else:
             possible_hosts = [player.name for player in self.cast if player.name not in game.host_exclude]
-            logthis(f"   Hosts: {possible_hosts}")
+            logthis(f"   Possible hosts: {possible_hosts}. From cast minus host_exclude")
+        # 2. Calculate a hosting probability distribution for each cast member
+        cast_hosting_counts = np.array([player.nbr_games_hosted for player in self.cast])
+        cast_mask = [name in possible_hosts for name in cast_names] # True if cast member is a possible host
+        probs_hosting = self.compute_probs(counts=cast_hosting_counts, cast_masks=cast_mask)
+        logthis(f"   Cast Hosting Counts: {cast_hosting_counts}")
+        logthis(f"   Cast Mask: {cast_mask}")
+        logthis(f"   Probs Hosting: {probs_hosting}")
+        # 3. Draw one cast member from the discrete probability distribution
+        host_idx = np.sort(np.random.choice(np.arange(self.nbr_players), size=1, p=probs_hosting, replace=False))[0]
+        host_name = cast_names[host_idx]
+        logthis(f"   Host Index: {host_idx} Host Name: {host_name}")
 
-        return random.choice(possible_hosts)        
+        # 4. Increment the nbr_games_hosted attribute of the host
+        self.cast[host_idx].nbr_games_hosted += 1
+
+        # Pick players for the game
+        # 1. Pick possible players based on player exclude list
+        cast_game_counts = np.array([player.nbr_games_played for player in self.cast])
+        cast_mask = [game.name not in player.game_exclusion_list for player in self.cast]
+        cast_mask[host_idx] = False
+
+        #  2. Calculate a playing probability distribution for each cast member
+        probs_playing = self.compute_probs(cast_game_counts, cast_mask) 
+        logthis(f"   Cast Game Counts: {cast_game_counts}")
+        logthis(f"   Cast Mask: {cast_mask}. From cast minus host and game_exclusion_list")
+        logthis(f"   Probs Playing: {probs_playing}")
+
+        # 3. Draw a sample of players from the discrete probability distribution
+        nbr_players = game.nbr_players if game.nbr_players > 0 else sum(cast_mask) # nbr_players is 0 if the game is for the whole cast
+        players_idxs = np.sort(np.random.choice(np.arange(self.nbr_players), size=nbr_players, p=probs_playing, replace=False))
+        logthis(f"   Players Indexes: {players_idxs}")
+
+        # 4. Increment nbr_games_played for the picked players
+        for player_idx in players_idxs:
+            self.cast[player_idx].nbr_games_played += 1
+
+        return host_idx, host_name, players_idxs.tolist(), cast_names[players_idxs].tolist()     
 
     @monitor_fn
     def pick_next_game(self):
@@ -171,13 +207,13 @@ class GameSession:
         zero = dt.timedelta(seconds=0)
         return max(left_time, zero)
         
-    @staticmethod
-    def masked_softmax(x, mask):
-        """Calculate softmax of x, using only indices where mask==True, all others = 0"""
-        selected_idx = np.arange(len(x))[mask]
-        softmax = np.zeros_like(x)
-        softmax[selected_idx] = np.exp(x[selected_idx]) / np.sum(np.exp(x[selected_idx]), axis=0)
-        return softmax
+    # @staticmethod
+    # def masked_softmax(x, mask):
+    #     """Calculate softmax of x, using only indices where mask==True, all others = 0"""
+    #     selected_idx = np.arange(len(x))[mask]
+    #     softmax = np.zeros_like(x)
+    #     softmax[selected_idx] = np.exp(x[selected_idx]) / np.sum(np.exp(x[selected_idx]), axis=0)
+    #     return softmax
 
 class Game:
     """Object including all information and methods related to a game"""
@@ -224,6 +260,7 @@ class Player:
         logthis(f"   Creating new Player object for {name}")
         self.name = name
         self.nbr_games_played = 0
+        self.nbr_games_hosted = 0
 
         # create list of inclusion and exclusion for this player
         self.hosting_inclusion_list = [
@@ -254,4 +291,14 @@ class Player:
             text = text + f"    {attr:15s}: {getattr(self, attr)}" + '\n'
         return text
 
-        
+
+if __name__ == '__main__':
+    pass
+    print('start')
+    setup_logging()
+    session = GameSession()
+    # session.pick_next_game()
+    session.current_game_idx = 14
+    session.pick_cast(session.games[session.current_game_idx])
+    session.pick_cast(session.games[session.current_game_idx])
+    session.pick_cast(session.games[session.current_game_idx])

@@ -12,8 +12,6 @@ from tkinter.messagebox import askyesno
 from utils import *
 
 # Define game parameters
-mm_default = 45
-ss_default = 0
 DISPLAY_SIZE = '1920x1080'
 TITLE = 'C.A.R.L.'
 BG_DEFAULT = '#0B404E'
@@ -128,9 +126,14 @@ class GameSpace:
         self.s.configure(
             'Main.TButton', background=CYAN, foreground='black',
             font=(None, 30, 'bold'), 
-            width=10,
+            width=14,
             anchor='center', 
             justify=tk.CENTER,
+            )
+        self.s.map(
+            'Main.TButton',
+            background=[("disabled", "pink")],
+            foreground=[("disabled", "red")],
             )
         self.s.configure(
             'Small.TButton', background=CYAN, foreground='black',
@@ -388,13 +391,26 @@ class GameSpace:
         """Update timer label and signal 5 min and 1 min with alarm, red color and clock ticks"""
         timeleft = self.session.time_left
         self.time_left_label.configure(text=f"Time Left: {self.hr_min_sec(timeleft)}")
-        # Sound alarm at 5 minutes left
-        if timedelta(seconds=60*5) <= timeleft <= timedelta(seconds=60*5+59):
-            playsound(raw_path('ahooga-horn.mp3'),False)
-        # Red timer and clock ticks from 60 seconds on
-        if timeleft <= timedelta(seconds=60):
-            self.time_left_label.configure(foreground = 'red')
+
+        # Sound alarm when only 5 minutes left and make timer red
+        if timedelta(seconds=60*5-30) <= timeleft <= timedelta(seconds=60*5):
+            if not self.session.last_five_minutes_starded:
+                playsound(raw_path('ahooga-horn.mp3'),False)
+                self.session.last_five_minutes_starded = True
+                self.time_left_label.configure(foreground = 'red')
+
+        # Tick sound ever second from 60 seconds down to 0
+        if timedelta(seconds=0) < timeleft <= timedelta(seconds=60):
+            # self.time_left_label.configure(foreground = 'red')
             playsound(raw_path('TickSound.mp3'),False)
+
+        # Disable next button, change button text and play game over sound when time left <= 0
+        if timeleft <= timedelta(seconds=0):
+            if not self.session.session_finished:
+                self.session.session_finished = True
+                playsound(raw_path('endhorn.mp3'),False)
+            self.btn_next['state'] = tk.DISABLED
+            self.btn_next['text'] = 'GAME OVER!'
         self.window.after(1000,self.countdown)
 
     @staticmethod
@@ -433,19 +449,19 @@ class GameSpace:
     @monitor_fn
     def update_player_info(self, gameidx):
         """Update the player and host info section on the game space window"""
-        idxs, players = self.session.pick_players(self.session.games[gameidx])
+        host_idx, host_name, players_idxs, players = self.session.pick_cast(self.session.games[gameidx])
         audience_members = self.session.games[gameidx].nbr_audience
-        logthis(f"   player idxs: {idxs}, players: {players}, audience: {audience_members}")
-        
         players_txt = f"{', '.join(players)}"
         audience_txt = f"Audience members: {audience_members}" if audience_members > 0 else ''
-        
-        txt = players_txt + '\n' + audience_txt + '\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
-        self.players_info.configure(text=txt)
 
-        host = self.session.pick_host(self.session.games[gameidx])
-        txt = f"{host}\n"
-        self.host_info.configure(text=txt)
+        logthis(f"   host idx: {host_idx}, host: {host_name}")
+        logthis(f"   player idxs: {players_idxs}, players: {players}, audience: {audience_members}")
+        
+        txt_host = f"{host_name}\n"
+        self.host_info.configure(text=txt_host)
+        txt_players = players_txt + '\n' + audience_txt + '\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
+        self.players_info.configure(text=txt_players)
+        logthis(f"   host and player info updated")
 
 
 if __name__ == '__main__':
