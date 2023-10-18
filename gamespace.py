@@ -14,6 +14,8 @@ from utils import *
 # Define game parameters
 DISPLAY_SIZE = '1920x1080'
 TITLE = 'C.A.R.L.'
+FONT_DEFAULT = 'Bahnschrift Condensed'
+FONT_WIDE = 'Bahnschrift'
 BG_DEFAULT = '#0B404E'
 BLUE = '#0B404E'
 CYAN = '#15EAEB'
@@ -82,22 +84,27 @@ class GameSpace:
         # Labels
         self.s.configure(
             'Main.TLabel', background=BG_DEFAULT, foreground=WHITE, 
-            font=(None, 20, 'bold'), 
+            font=(FONT_DEFAULT, 20, 'bold'), 
+            relief=tk.NONE
+            )
+        self.s.configure(
+            'Wide.TLabel', background=BG_DEFAULT, foreground=WHITE, 
+            font=(FONT_WIDE, 20, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
             'Orange.TLabel', background=ORANGE, foreground=WHITE, 
-            font=(None, 20, 'bold'), 
+            font=(FONT_DEFAULT, 20, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
             'Purple.TLabel', background=PURPLE, foreground=WHITE, 
-            font=(None, 20, 'bold'), 
+            font=(FONT_DEFAULT, 20, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
             'Info.TLabel', background=DARK_GREEN, foreground=WHITE, 
-            font=(None, 20, 'normal'), 
+            font=(FONT_DEFAULT, 20, 'normal'), 
             width=25,
             wraplength=350,
             anchor='center', justify=tk.CENTER,
@@ -107,7 +114,7 @@ class GameSpace:
             )
         self.s.configure(
             'Header.TLabel', background=DARK_GREEN, foreground=CYAN, 
-            font=(None, 20, 'bold'), 
+            font=(FONT_WIDE, 20, 'bold'), 
             # width=25, 
             anchor='we', justify=tk.CENTER,
             # relief=tk.GROOVE , borderwidth=1,
@@ -116,8 +123,8 @@ class GameSpace:
             )
         self.s.configure(
             'GameName.TLabel', background=DARK_GREEN, foreground=CYAN, 
-            font=(None, 24, 'bold'), 
-            # width=25, 
+            font=(FONT_WIDE, 24, 'bold'), 
+            width=22, 
             anchor='center', justify=tk.CENTER,
             # relief=tk.GROOVE , borderwidth=1,
             relief=tk.NONE , borderwidth=0,
@@ -126,8 +133,8 @@ class GameSpace:
         # Buttons
         self.s.configure(
             'Main.TButton', background=CYAN, foreground='black',
-            font=(None, 30, 'bold'), 
-            width=14,
+            font=(FONT_DEFAULT, 30, 'bold'), 
+            width=18,
             anchor='center', 
             justify=tk.CENTER,
             )
@@ -138,7 +145,7 @@ class GameSpace:
             )
         self.s.configure(
             'Small.TButton', background=CYAN, foreground='black',
-            font=(None, 15, 'normal'), 
+            font=(FONT_DEFAULT, 15, 'normal'), 
             width=6,
             anchor='center', 
             justify=tk.CENTER,
@@ -176,13 +183,13 @@ class GameSpace:
     @monitor_fn
     def build_footer(self):
         self.score_label = ttk.Label(
-            self.footer, text='Number Games Played: 0\n', style='Main.TLabel',
+            self.footer, text='Number Games Played: 0\n', style='Wide.TLabel',
             anchor='n', width=40
             )
         self.score_label.grid(row=1, column=1, columnspan=10, sticky='ns')
         
         self.time_left_label = ttk.Label(
-            self.footer, text='Time Left: x:xx:xx\n', style='Main.TLabel',
+            self.footer, text='Time Left: x:xx:xx\n', style='Wide.TLabel',
             anchor='n', width=35
             )
         self.time_left_label.grid(row=1, column=11, columnspan=10, sticky='ns')
@@ -295,7 +302,7 @@ class GameSpace:
                 fill=f, outline=o, width=w)
             self.canvas.create_text(
                 self.x[n], self.y[n], text=games[n].name, 
-                font=(None,12, 'bold'), 
+                font=(FONT_DEFAULT,15, 'bold'), 
                 width=85, justify=tk.CENTER, anchor='center')
 
     @monitor_fn
