@@ -4,8 +4,8 @@
         "nbr_players": 4,
         "nbr_audience": 0,
         "prompt": "What are four of your favorite TV channels?",
-        "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "exclude": ["Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -15,8 +15,8 @@
         "nbr_players": 2,
         "nbr_audience": 0,
         "prompt": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
-        "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "exclude": ["Knick"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -27,7 +27,7 @@
         "nbr_audience": 0,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -38,7 +38,7 @@
         "nbr_audience": 0,
         "prompt": "Something funny and something serious",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -49,7 +49,7 @@
         "nbr_audience": 0,
         "prompt": "An ordinary task you do everyday.",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -60,7 +60,7 @@
         "nbr_audience": 0,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -71,7 +71,7 @@
         "nbr_audience": 2,
         "prompt": "Two audience volunteers.",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -82,7 +82,7 @@
         "nbr_audience": 0,
         "prompt": "How many products can we return in 1.5 minutes?",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -93,7 +93,7 @@
         "nbr_audience": 0,
         "prompt": "A date with me is like <object/occupation>.",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -104,7 +104,7 @@
         "nbr_audience": 0,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -115,7 +115,7 @@
         "nbr_audience": 0,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -126,7 +126,18 @@
         "nbr_audience": 0,
         "prompt": "At least three story genres.",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
+        "host_exclude": [],
+        "description": null,
+        "tips": null
+    },
+    "12": {
+        "name": "Headphones",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -137,7 +148,7 @@
         "nbr_audience": 0,
         "prompt": "Your favorite Olympic sport",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -148,7 +159,7 @@
         "nbr_audience": 2,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -170,7 +181,7 @@
         "nbr_audience": 0,
         "prompt": "3 Locations",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -181,7 +192,7 @@
         "nbr_audience": 0,
         "prompt": "An occupation, animal, or celebrity",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -192,7 +203,7 @@
         "nbr_audience": 0,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -203,51 +214,7 @@
         "nbr_audience": 0,
         "prompt": "What is a dumb argument you've had recently?",
         "exclude": [],
-        "host_include": ["Etienne"],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "20": {
-        "name": "Late for work",
-        "nbr_players": 4,
-        "nbr_audience": 0,
-        "prompt": "A crazy reason to be late for work.",
-        "exclude": [],
-        "host_include": ["Knick", "Etienne"],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "21": {
-        "name": "Toast",
-        "nbr_players": 3,
-        "nbr_audience": 0,
-        "prompt": null,
-        "exclude": [],
-        "host_include": ["Knick"],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "22": {
-        "name": "Sound Effects",
-        "nbr_players": 2,
-        "nbr_audience": 2,
-        "prompt": null,
-        "exclude": [],
-        "host_include": ["Knick"],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "23": {
-        "name": "Deaf Replay",
-        "nbr_players": 4,
-        "nbr_audience": 0,
-        "prompt": null,
-        "exclude": [],
-        "host_include": ["Knick"],
+        "host_include": [],
         "host_exclude": [],
         "description": null,
         "tips": null
