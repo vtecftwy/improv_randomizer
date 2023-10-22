@@ -201,12 +201,11 @@ class GameSpace:
 
     @monitor_fn
     def draw_canvas_bg(self):
-        """Draw canvas for bg image and game bubbles. Use default bg img unless ai2_bg_1100x700.png exists"""
-        
-        if (ROOT/'assets/img/ai2_bg_1100x700.png').is_file():
-            background_img = ROOT/'assets/img/ai2_bg_1100x700.png'
-        else:
-            background_img = ROOT/'assets/img/bg_1100x700.png'
+        """Draw canvas for bg image and game bubbles. Use img file as per configuration file"""
+        img_fname = get_config()['background-image']
+
+        background_img = ROOT/'assets'/'img'/img_fname
+        assert background_img.exists(), f"No file found at {background_img}"
 
         self.img = ImageTk.PhotoImage(Image.open(background_img))
         self.canvas.create_image(0, 0, anchor='nw', image=self.img)
