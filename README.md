@@ -3,7 +3,7 @@ A simple tool for randomized short games for improv.
 
 You can customize the following by updating a few files:
 - the cast members (text tile)
-- the games to play and their characteristics (jsom file)
+- the games to play and their characteristics (json file)
 - a list of prompts to use randomly for game which do not explicitely require a specific prompt (text file)
 - the background image (in config file)
 - the duration of a session (in config file)
