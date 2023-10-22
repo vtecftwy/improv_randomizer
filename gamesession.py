@@ -6,12 +6,10 @@ import random
 from pathlib import Path
 from utils import *
 
-GAME_DURATION = dt.timedelta(minutes=45, seconds=0)
+config_dict = get_config()
+GAME_DURATION = dt.timedelta(minutes=config_dict['duration-minutes'], seconds=0)
 
-ROOT = Path(__file__).resolve().parent
-p2games = ROOT/ 'games.json'
-p2cast = ROOT/ 'cast.txt'
-p2prompts = ROOT/ 'prompts.txt'
+p2games, p2cast, p2prompts = get_paths()
 
 assert p2games.exists(), f'File {p2games} does not exist'
 assert p2cast.exists(), f'File {p2cast} does not exist'
@@ -294,3 +292,5 @@ if __name__ == '__main__':
     # session.pick_cast(session.games[session.current_game_idx])
     # session.pick_cast(session.games[session.current_game_idx])
     # session.pick_cast(session.games[session.current_game_idx])
+
+    

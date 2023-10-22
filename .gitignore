@@ -110,8 +110,13 @@ ENV/
 config-api-keys.cfg
 
 # Image and audio files to protect IPR
-/assets/img/ai2*
-/assets/audio/audio-repo/*
+assets/img/ai2*
+assets/audio/audio-repo/*
 
 # log files
-/logs/
+logs/
+
+# Custom Configuration
+config.cfg
+config/*/*
+!config/*.*
