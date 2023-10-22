@@ -12,3 +12,5 @@ You can customize the following by updating a few files:
 For each game, a host and players are randomly drawn from the cast, in a way that keeps cummulative participation by each cast member as player and host more of less equal.
   
 For each game, it is possible to exclude one or several cast members as player or host. It is also possible to retrict hosting to a specific list of cast member.
+
+A jupyter notebook in the `nbs` directory allows to update the games, cast and prompts without having to work in the json file: `Configuration_tool.ipynb`.
