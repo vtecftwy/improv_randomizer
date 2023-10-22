@@ -8,7 +8,6 @@ from utils import *
 
 GAME_DURATION = dt.timedelta(minutes=45, seconds=0)
 
-
 ROOT = Path(__file__).resolve().parent
 p2games = ROOT/ 'games.json'
 p2cast = ROOT/ 'cast.txt'

@@ -1,6 +1,6 @@
 {
     "0": {
-        "name": "TV Box",
+        "name": "Four Square",
         "nbr_players": 4,
         "nbr_audience": 0,
         "prompt": "What are four of your favorite TV channels?",
@@ -38,13 +38,13 @@
         "nbr_audience": 0,
         "prompt": "Something funny and something serious",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
         "tips": null
     },
     "4": {
-        "name": "More or Less",
+        "name": "Five Three One",
         "nbr_players": 3,
         "nbr_audience": 0,
         "prompt": "An ordinary task you do everyday.",
@@ -60,7 +60,7 @@
         "nbr_audience": 0,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -76,24 +76,13 @@
         "description": null,
         "tips": null
     },
-    "7": {
-        "name": "Do You Have a Receipt?",
-        "nbr_players": 4,
-        "nbr_audience": 0,
-        "prompt": "How many products can we return in 1.5 minutes?",
-        "exclude": [],
-        "host_include": ["Knick", "Etienne"],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
     "8": {
         "name": "A Date with Me",
         "nbr_players": 0,
         "nbr_audience": 0,
         "prompt": "A date with me is like <object/occupation>.",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -115,7 +104,7 @@
         "nbr_audience": 0,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -125,7 +114,7 @@
         "nbr_players": 3,
         "nbr_audience": 0,
         "prompt": "At least three story genres.",
-        "exclude": [],
+        "exclude": ["Stephanie"],
         "host_include": ["Knick", "Etienne"],
         "host_exclude": [],
         "description": null,
@@ -136,7 +125,7 @@
         "nbr_players": 3,
         "nbr_audience": 0,
         "prompt": "Your favorite Olympic sport",
-        "exclude": [],
+        "exclude": ["Stephanie"],
         "host_include": ["Knick", "Etienne"],
         "host_exclude": [],
         "description": null,
@@ -148,7 +137,7 @@
         "nbr_audience": 2,
         "prompt": null,
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -170,7 +159,7 @@
         "nbr_audience": 0,
         "prompt": "3 Locations",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -214,7 +203,7 @@
         "nbr_audience": 0,
         "prompt": "A crazy reason to be late for work.",
         "exclude": [],
-        "host_include": ["Knick", "Etienne"],
+        "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
         "tips": null
@@ -224,7 +213,7 @@
         "nbr_players": 3,
         "nbr_audience": 0,
         "prompt": null,
-        "exclude": [],
+        "exclude": ["Stephanie", "Knick"],
         "host_include": ["Knick"],
         "host_exclude": [],
         "description": null,
@@ -251,5 +240,16 @@
         "host_exclude": [],
         "description": null,
         "tips": null
-    }
+    },
+    "24": {
+        "name": "Chain Death",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "A Location, An Occupation, A Murder Weapon",
+        "exclude": [],
+        "host_include": ["Knick"],
+        "host_exclude": [],
+        "description": null,
+        "tips": null
+    }    
 }

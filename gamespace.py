@@ -332,7 +332,7 @@ class GameSpace:
         elif self.session.step >= self.nbr_games:
             logthis(f"   All Games Played (nbr played: {self.session.nbr_games_played})! RESET!")
             self.btn_next['state'] = tk.DISABLED
-            self.btn_next['text'] = 'DONE!'
+            self.btn_next['text'] = 'Done !'
             sound_to_play = 'game-all-played.mp3'
             playsound(raw_path(sound_to_play),False)
             self.session.previous_game_idx = self.session.current_game_idx
@@ -433,7 +433,6 @@ class GameSpace:
                 playsound(raw_path(sound_to_play),False)
             self.btn_next['state'] = tk.DISABLED
             self.btn_next['text'] = 'GAME OVER!'
-
         self.window.after(1000,self.countdown)
 
     @staticmethod
