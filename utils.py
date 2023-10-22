@@ -71,10 +71,13 @@ def get_config():
     # Select configuration file: config.cfg, config-default.cfg, first of any other *.cfg    
     if (ROOT/'config.cfg').is_file():
         p2config = ROOT / 'config.cfg'
+        logthis(f"Using config.cfg file: {p2config}")
     elif (ROOT/'config-default.cfg').is_file():
         p2config = ROOT / 'config-default.cfg'
+        logthis(f"Using config-default.cfg file: {p2config}")
     elif len(list(ROOT.glob('config*.cfg'))) > 0:
         p2config = list(ROOT.glob('config*.cfg'))[0]
+        logthis(f"Using first custom config file: {p2config}")
     else:
         raise FileNotFoundError('No configuration file found. Should be a *.cfg file')
 
@@ -315,4 +318,5 @@ class WidgetPrompts:
  
 
 if __name__ == '__main__':
-    pass
+    setup_logging()
+    get_config()
