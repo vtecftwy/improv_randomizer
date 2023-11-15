@@ -213,19 +213,23 @@ class WidgetGames:
         self.gkeys = list(self.games.keys())
         self.gkeys_active = [k for k in self.gkeys if k not in self.games_to_delete]
 
+    def _clean_cast(self, name_list):
+        """Removes any name that is not in the list of cast members."""
+        return [c for c in name_list if c in self.cast_names]
+
     def _create_game_param_lists(self):
         self.names = [g['name'] for g in self.games.values()]
         self.nbr_players = [g['nbr_players'] for g in self.games.values()]
         self.nbr_audience = [g['nbr_audience'] for g in self.games.values()]
         self.prompt = [g['prompt'] for g in self.games.values()]
-        self.exclude = [g['exclude'] for g in self.games.values()]
-        self.host_include = [g['host_include'] for g in self.games.values()]
-        self.host_exclude = [g['host_exclude'] for g in self.games.values()]
+        self.exclude = [self._clean_cast(g['exclude']) for g in self.games.values()]
+        self.host_include = [self._clean_cast(g['host_include']) for g in self.games.values()]
+        self.host_exclude = [self._clean_cast(g['host_exclude']) for g in self.games.values()]
         self.description = [g['description'] for g in self.games.values()]
         self.tips = [g['tips'] for g in self.games.values()]
         self.games_to_delete = []
         self.games_to_create = {}
-    
+
     def _create_widget_for_game_param(self):
         """Create widgets for each game parameter, allowing updating the info.
 
@@ -249,6 +253,10 @@ class WidgetGames:
         """
         self.save_updated_game_info()
 
+        print(self.cast_names)
+        print(self.exclude)
+        print(self.host_include)
+        print(self.host_exclude)
         options = ['None'] + self.cast_names
         self.w_exclude = []
         self.w_host_include = []
