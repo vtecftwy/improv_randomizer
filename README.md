@@ -10,7 +10,9 @@ The following can be customized:
 
 ## How it works?:
 - Each time the button is clicked, a new game is randomly picked among the possible ones
+
 <img src="assets/img/screenshot-tool.png">
+
 - For each game, a host and the correct number of players are randomly drawn from the cast. Players are drawned from the cast in a way that keeps cummulative participation by each cast member as player and host more of less equal.
 - The game name, the selected players and host as well as a prompt will be brought to the screen
 - A sound is played at each game transition
@@ -23,8 +25,10 @@ The following can be customized:
   - `games = games.json` provide the JSON file name where the games info are stored
   - `prompts =  prompts.txt` provided the text file name where the radom prompts are stored 
 - The jupyter notebook in the project root `cast-configuration-tool.ipynb` makes it easier to change cast member's names and update games.
+
 <img src="assets/img/screenshot-config-cast.png">
 <img src="assets/img/screenshot-config-games.png">
+
 - For each game, it is possible to exclude one or several cast members as player or host. It is also possible to retrict hosting to a specific list of cast member.
 
 
