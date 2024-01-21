@@ -1,12 +1,15 @@
 {
     "0": {
-        "name": "TV Box",
-        "nbr_players": 4,
+        "name": "A Date with Me",
+        "nbr_players": 0,
         "nbr_audience": 0,
-        "prompt": "What are four of your favorite TV channels?",
+        "prompt": "A date with me is like <object/occupation>.",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
@@ -14,32 +17,41 @@
         "name": "Double Reverse Alphabet",
         "nbr_players": 2,
         "nbr_audience": 0,
-        "prompt": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+        "prompt": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z What is a non romantic relationship.",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "2": {
-        "name": "Sure Ding",
+        "name": "Forward Reverse",
         "nbr_players": 3,
         "nbr_audience": 0,
-        "prompt": "None",
+        "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "3": {
-        "name": "No Laughing",
-        "nbr_players": 0,
+        "name": "Genres",
+        "nbr_players": 3,
         "nbr_audience": 0,
-        "prompt": "Something funny and something serious",
+        "prompt": "At least three story genres. \n+ Title of a netflix movie which will never be made",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
@@ -50,51 +62,66 @@
         "prompt": "An ordinary task you do everyday.",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "5": {
-        "name": "Stunt Doubles",
-        "nbr_players": 4,
+        "name": "Mutant Debate",
+        "nbr_players": 5,
         "nbr_audience": 0,
-        "prompt": "None",
+        "prompt": "What is a dumb argument you've had recently?",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "6": {
-        "name": "Pillars",
-        "nbr_players": 2,
-        "nbr_audience": 2,
-        "prompt": "Two audience volunteers.",
+        "name": "No Laughing",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "Something funny and something serious",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "7": {
-        "name": "Do You Have a Receipt?",
-        "nbr_players": 4,
-        "nbr_audience": 0,
-        "prompt": "How many products can we return in 1.5 minutes?",
+        "name": "Pillars",
+        "nbr_players": 3,
+        "nbr_audience": 2,
+        "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "8": {
-        "name": "A Date with Me",
-        "nbr_players": 0,
-        "nbr_audience": 0,
-        "prompt": "A date with me is like <object/occupation>.",
+        "name": "Puppets",
+        "nbr_players": 2,
+        "nbr_audience": 2,
+        "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
@@ -102,120 +129,99 @@
         "name": "Questions Only",
         "nbr_players": 0,
         "nbr_audience": 0,
-        "prompt": "None",
+        "prompt": "A location with a lot of people",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "10": {
-        "name": "Highlander",
-        "nbr_players": 4,
-        "nbr_audience": 0,
-        "prompt": "None",
-        "exclude": [],
-        "host_include": [],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "11": {
-        "name": "Genres",
-        "nbr_players": 3,
-        "nbr_audience": 0,
-        "prompt": "At least three story genres.",
-        "exclude": [],
-        "host_include": [],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "12": {
-        "name": "Headphones",
-        "nbr_players": 3,
-        "nbr_audience": 0,
-        "prompt": "None",
-        "exclude": [],
-        "host_include": [],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "13": {
         "name": "Sit, Stand, Lie",
         "nbr_players": 3,
         "nbr_audience": 0,
         "prompt": "Your favorite Olympic sport",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
+        "description": null,
+        "tips": null
+    },
+    "11": {
+        "name": "Story, Story, Die!",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
+        "description": null,
+        "tips": null
+    },
+    "12": {
+        "name": "Stunt Doubles",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
+        "description": null,
+        "tips": null
+    },
+    "13": {
+        "name": "Sure Ding",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "14": {
-        "name": "Puppets",
-        "nbr_players": 2,
-        "nbr_audience": 2,
-        "prompt": "None",
+        "name": "TV Box",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "What are four of your favorite TV channels?",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     },
     "15": {
-        "name": "Story, Story, Die!",
-        "nbr_players": 0,
-        "nbr_audience": 0,
-        "prompt": "None",
-        "exclude": [],
-        "host_include": [],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "16": {
-        "name": "Everybody Dies",
-        "nbr_players": 3,
-        "nbr_audience": 0,
-        "prompt": "3 Locations: One normal, One crazy, One out of this world",
-        "exclude": [],
-        "host_include": [],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "17": {
         "name": "World's Worst",
         "nbr_players": 0,
         "nbr_audience": 0,
         "prompt": "An occupation, animal, or celebrity",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "18": {
-        "name": "Forward Reverse",
-        "nbr_players": 3,
-        "nbr_audience": 0,
-        "prompt": "None",
-        "exclude": [],
-        "host_include": [],
-        "host_exclude": [],
-        "description": null,
-        "tips": null
-    },
-    "19": {
-        "name": "Mutant Debate",
-        "nbr_players": 5,
-        "nbr_audience": 0,
-        "prompt": "What is a dumb argument you've had recently?",
-        "exclude": [],
-        "host_include": [],
-        "host_exclude": [],
+        "host_exclude": [
+            "Ina",
+            "Ming Ge"
+        ],
         "description": null,
         "tips": null
     }

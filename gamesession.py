@@ -70,6 +70,10 @@ class GameSession:
         self.promptlist = [line.removesuffix('\n').strip() for line in lines]
 
         logthis('   Game session data loaded')
+        print(f"{len(self.cast)} cast members: {', '.join(player_names)}\n")
+        print(f"{self.nbr_games} games")
+        for g in self.gamedict.values():
+            print(f" - {g['name']}")
 
     @monitor_fn
     def create_game_sequence(self):

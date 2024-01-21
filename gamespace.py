@@ -13,7 +13,7 @@ from utils import *
 
 # Define game parameters
 DISPLAY_SIZE = '1920x1080'
-TITLE = 'C.A.R.L.'
+TITLE = 'C.H.R.I.S'
 FONT_DEFAULT = 'Bahnschrift Condensed'
 FONT_WIDE = 'Bahnschrift'
 BG_DEFAULT = '#0B404E'

@@ -201,7 +201,7 @@ class WidgetGames:
 
         # Build list for each parameter of the games
         self._create_game_param_lists()
-        self._evaluate_attributes()
+        self._evaluate_attributes() 
         # Create widgets
         self._create_widget_for_game_param()
         self._create_widget_for_game_cast()
@@ -253,10 +253,6 @@ class WidgetGames:
         """
         self.save_updated_game_info()
 
-        print(self.cast_names)
-        print(self.exclude)
-        print(self.host_include)
-        print(self.host_exclude)
         options = ['None'] + self.cast_names
         self.w_exclude = []
         self.w_host_include = []
@@ -311,7 +307,7 @@ class WidgetGames:
             self.games[k]['name'] = self.w_gnames[i].value
             self.games[k]['nbr_players'] = int(self.w_nbr_players[i].value)
             self.games[k]['nbr_audience'] = int(self.w_nbr_audience[i].value)
-            self.games[k]['prompt'] = self.w_prompt[i].value
+            self.games[k]['prompt'] = None if self.w_prompt[i].value == 'None' else self.w_prompt[i].value 
 
         self._delete_flagged_games()
         self._add_created_games()
