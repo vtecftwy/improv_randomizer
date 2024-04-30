@@ -32,7 +32,6 @@ def monitor_fn(fn):
     return wrapper
 
 def setup_logging(filename=None):
-    
     # Setup logging file
     if filename is None:
         p2log = ROOT / 'logs/_short.log'
@@ -43,9 +42,9 @@ def setup_logging(filename=None):
 
     # Configure the root logger
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format='%(asctime)s %(message)s',
-        datefmt='%H:%M:%S'
+        datefmt='%H:%M:%S',
         )
     # Create a file handler to log to a file
     file_handler = logging.FileHandler(

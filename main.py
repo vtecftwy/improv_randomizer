@@ -7,12 +7,11 @@ from gamespace import GameSpace
 from gamesession import GameSession
 from utils import *
 
+setup_logging()
 # Setup path to package and modules
 # TODO: correct this line after transforming this into a package
 ROOT = Path(__file__).parent
 sys.path.append(str(ROOT.absolute()))
-
-setup_logging()
 
 if __name__ == '__main__':
 

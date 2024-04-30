@@ -6,12 +6,10 @@
         "prompt": "A date with me is like <object/occupation>.",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "1": {
         "name": "Double Reverse Alphabet",
@@ -20,12 +18,10 @@
         "prompt": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z What is a non romantic relationship.",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "2": {
         "name": "Forward Reverse",
@@ -34,12 +30,10 @@
         "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "3": {
         "name": "Genres",
@@ -48,12 +42,10 @@
         "prompt": "At least three story genres. \n+ Title of a netflix movie which will never be made",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "4": {
         "name": "More or Less",
@@ -62,12 +54,10 @@
         "prompt": "An ordinary task you do everyday.",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "5": {
         "name": "Mutant Debate",
@@ -76,12 +66,10 @@
         "prompt": "What is a dumb argument you've had recently?",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "6": {
         "name": "No Laughing",
@@ -90,12 +78,10 @@
         "prompt": "Something funny and something serious",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "7": {
         "name": "Pillars",
@@ -104,12 +90,10 @@
         "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "8": {
         "name": "Puppets",
@@ -118,12 +102,10 @@
         "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "9": {
         "name": "Questions Only",
@@ -132,12 +114,10 @@
         "prompt": "A location with a lot of people",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "10": {
         "name": "Sit, Stand, Lie",
@@ -146,12 +126,10 @@
         "prompt": "Your favorite Olympic sport",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "11": {
         "name": "Story, Story, Die!",
@@ -162,12 +140,10 @@
         "host_include": [
             "Knick"
         ],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "12": {
         "name": "Stunt Doubles",
@@ -176,12 +152,10 @@
         "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "13": {
         "name": "Sure Ding",
@@ -190,12 +164,10 @@
         "prompt": null,
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "14": {
         "name": "TV Box",
@@ -204,12 +176,10 @@
         "prompt": "What are four of your favorite TV channels?",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     },
     "15": {
         "name": "World's Worst",
@@ -218,11 +188,9 @@
         "prompt": "An occupation, animal, or celebrity",
         "exclude": [],
         "host_include": [],
-        "host_exclude": [
-            "Ina",
-            "Ming Ge"
-        ],
+        "host_exclude": [],
         "description": null,
-        "tips": null
+        "tips": null,
+        "category": ""
     }
 }
