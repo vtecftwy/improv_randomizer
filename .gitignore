@@ -115,6 +115,7 @@ assets/audio/audio-repo/*
 
 # log files
 logs/
+test_logs.py
 
 # Custom Configuration
 config.cfg

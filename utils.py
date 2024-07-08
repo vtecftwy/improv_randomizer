@@ -9,8 +9,6 @@ from IPython.display import display, display_html
 from ipywidgets import Text, Label, Textarea, Button, HTML, Layout, GridspecLayout, SelectMultiple
 from pathlib import Path
 
-
-
 # Setup path to package and modules
 # TODO: correct this line after transforming this is a package
 ROOT = Path(__file__).parent
@@ -35,14 +33,16 @@ def setup_logging(filename=None):
     # Setup logging file
     if filename is None:
         p2log = ROOT / 'logs/_short.log'
+        print(f"No filename provided for logs. Using default log file: {p2log.absolute()}.")
     else:
         p2log = ROOT / f'logs/{filename}'
+        print(f"Logging into {p2log.absolute()}.")
     if not p2log.is_file():
         p2log.touch()
 
     # Configure the root logger
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.WARNING,
         format='%(asctime)s %(message)s',
         datefmt='%H:%M:%S',
         )
@@ -61,10 +61,7 @@ def setup_logging(filename=None):
         )
     # Add the file handler to the root logger
     logging.getLogger('').addHandler(file_handler)
-
-    logthis(f"{'='*50}")
-    logthis(f" {'New Session: ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'):^48s}")
-    logthis(f"{'='*50}")
+    print('logging setup done')
 
 def get_config():
     """Identifies the config file, loads it and returns a config dictionary."""
@@ -448,8 +445,3 @@ class WidgetPrompts:
         for widget in self.widgets:
             display(widget)
         display(self.save)
- 
-
-if __name__ == '__main__':
-    setup_logging()
-    get_config()
