@@ -45,7 +45,7 @@ def setup_logging(filename=None):
     root_logger.setLevel(logging.DEBUG) #Set the root logger to catpure all levels of logs
 
     # Create a formatter
-    formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%H:%M:%S')
+    formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
     # Create a file handler to log to a file
     file_handler = logging.FileHandler(filename=p2log, mode='a', encoding='utf-8')
