@@ -1,4 +1,5 @@
 import math
+import pandas as pd
 import random
 import tkinter as tk
 
@@ -61,7 +62,13 @@ class GameSpace:
         self.build_info_columns()
         self.build_footer()
         self.game_next_audio_fnames = []
-        logthis('   GameSpace created')          
+        self.p2stats = ROOT / 'logs/stats.csv'
+        self.stats = pd.read_csv(self.p2stats, index_col=0, header=0)
+        cols = self.stats.columns
+        ncols = len(cols)
+        self.game_dt = datetime.now()
+        self.stats = pd.concat([self.stats, pd.DataFrame(data=[[0]*ncols],index=[self.game_dt],columns=cols)], axis=0)
+        logthis('   GameSpace created')
 
     @monitor_fn
     def define_styles(self):
@@ -478,6 +485,16 @@ class GameSpace:
         txt_players = players_txt + '\n' + audience_txt + '\n' * (NBR_LINES_IN_INFO - len(players_txt)//28)
         self.players_info.configure(text=txt_players)
         logthis(f"   host and player info updated")
+        
+        # Update player stats
+        cols = self.stats.columns
+        ncols = len(cols)
+        row = pd.DataFrame(data=[[1] + [0]*(ncols-1)], index=[self.game_dt], columns=cols)
+        row.loc[self.game_dt,players] = 1
+        row.loc[self.game_dt,host_name] = 1
+        self.stats.loc[[self.game_dt],:] = self.stats.loc[[self.game_dt],:] + row
+        self.stats.to_csv(self.p2stats, index=True)
+        logthis('   player stats updated:', self.stats.loc[self.game_dt,:].values.tolist())
 
 
 if __name__ == '__main__':

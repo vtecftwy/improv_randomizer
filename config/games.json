@@ -123,7 +123,7 @@
         "name": "Sit, Stand, Lie",
         "nbr_players": 3,
         "nbr_audience": 0,
-        "prompt": "Your favorite Olympic sport",
+        "prompt": "Your favorite outdoor activity",
         "exclude": [],
         "host_include": [],
         "host_exclude": [],
