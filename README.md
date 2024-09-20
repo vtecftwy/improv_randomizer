@@ -20,12 +20,12 @@ The following items are customizable:
 
 ## Customization:
 - By default, the package will look for configuration information in file `config.cfg`, if it exists, and in file `config-default.cfg`  otherwise. The default configuration file comes with repo.
-- The configuration file defines four values (see below for default values):
+- The configuration file defines six parameters (see below for default values):
   - `duration-minutes = 45`
   - `cast = cast.txt`  (the text file name where the cast member names are stored)
   - `games = games.json` (the JSON file name where the games info are stored)
   - `prompts =  prompts.txt` (the text file name where the random prompts are stored)
-  - `cfg-folder` =  (a folder under `config` where configuration files are stored, by default, files are directly under `config`)
+  - `cfg-folder` =  (a folder under `config` where custom configuration files are stored, by default, files are directly under `config`)
   - `background-image` = bg_1100x700.png
 
 - A jupyter notebook in the project root `cast-configuration-tool.ipynb` makes it easier to change cast member's names, update games and update prompts.
