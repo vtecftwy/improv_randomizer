@@ -63,6 +63,9 @@ class GameSession:
         player_names = [line.removesuffix('\n').strip() for line in lines]
         self.cast = [Player(name, games=self.games) for name in player_names]
         self.nbr_players = len(self.cast)
+        
+        self.game_categories = list(set([g.category for g in self.games]))
+        self.played_categories_counts = {cat: 0 for cat in self.game_categories}
 
         # Handle prompts
         with open(p2prompts, 'r') as fp:
@@ -78,8 +81,29 @@ class GameSession:
     @monitor_fn
     def create_game_sequence(self):
         """Create a random sequence of games, by defining a sequence of game indices"""
-        self.game_sequence = list(range(self.nbr_games))
-        random.shuffle(self.game_sequence)
+        # purely random sequence of games
+        # self.game_sequence = list(range(self.nbr_games))
+        # random.shuffle(self.game_sequence)
+        
+        # pick game sequence randomly with the following constraints:
+        #  - no two games from the same category follow each other
+        #  - no game is played twice in the same session
+        #  - all categories are represented in a quasi-equal number of games
+        games_per_category = {cat: [g for g in self.games if g.category == cat] for cat in self.game_categories}
+        for cat in self.game_categories:
+            games_per_category[cat] = random.sample(games_per_category[cat], len(games_per_category[cat]))
+              
+        games_randomized = []
+        while any([len(games_per_category[cat]) > 0 for cat in self.game_categories]):
+            for cat in self.game_categories:
+                if len(games_per_category[cat]) > 0:
+                    game = games_per_category[cat].pop()
+                    games_randomized.append(game)            
+        
+        self.game_sequence = [self.games.index(g) for g in games_randomized]
+        print(self.game_sequence)
+        print('\n'.join([f"{g.name:30s} {g.category}" for g in games_randomized]))
+                            
 
     @monitor_fn
     def show_cast(self):
@@ -218,7 +242,6 @@ class Game:
         optional_keys = ['prompt', 'include', 'exclude', 'description', 'tips']
 
         for k, v in gameinfo.items():
-            # self.__setattr__(k, v)
             setattr(self, k, v)
         for k in required_keys:
             assert k in gameinfo.keys(), f'Key {k} is missing from gameinfo dict'
@@ -246,7 +269,8 @@ class Game:
         for attr in self.info():
             text = text + f"    {attr:15s}: {getattr(self, attr)}" + '\n'
         return text
-    
+
+
 class Player:
     """Object including all information and methods related to a player"""
 
@@ -290,7 +314,13 @@ if __name__ == '__main__':
     pass
 
     # setup_logging()
-    # session = GameSession()
+    session = GameSession()
+    # # print(session.games)
+    # print([(g.name, g.category) for g in session.game_sequence])
+    # session.create_game_sequence()
+    # print([(g.name, g.category) for g in session.game_sequence])
+    # print('Done')
+    
     # # session.pick_next_game()
     # session.current_game_idx = 14
     # session.pick_cast(session.games[session.current_game_idx])
