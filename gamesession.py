@@ -64,7 +64,7 @@ class GameSession:
         self.cast = [Player(name, games=self.games) for name in player_names]
         self.nbr_players = len(self.cast)
         
-        self.game_categories = list(set([g.category for g in self.games]))
+        self.game_categories = sorted(list(set([g.category for g in self.games])))
         self.played_categories_counts = {cat: 0 for cat in self.game_categories}
 
         # Handle prompts
@@ -89,20 +89,21 @@ class GameSession:
         #  - no two games from the same category follow each other
         #  - no game is played twice in the same session
         #  - all categories are represented in a quasi-equal number of games
-        games_per_category = {cat: [g for g in self.games if g.category == cat] for cat in self.game_categories}
-        for cat in self.game_categories:
+        self.shuffled_categories = random.sample(self.game_categories, len(self.game_categories))
+        games_per_category = {cat: [g for g in self.games if g.category == cat] for cat in self.shuffled_categories}
+        for cat in self.shuffled_categories:
             games_per_category[cat] = random.sample(games_per_category[cat], len(games_per_category[cat]))
-              
+        
         games_randomized = []
-        while any([len(games_per_category[cat]) > 0 for cat in self.game_categories]):
-            for cat in self.game_categories:
+        while any([len(games_per_category[cat]) > 0 for cat in self.shuffled_categories]):
+            for cat in self.shuffled_categories:
                 if len(games_per_category[cat]) > 0:
                     game = games_per_category[cat].pop()
                     games_randomized.append(game)            
         
         self.game_sequence = [self.games.index(g) for g in games_randomized]
-        print(self.game_sequence)
-        print('\n'.join([f"{g.name:30s} {g.category}" for g in games_randomized]))
+        # print(self.game_sequence)
+        # print('\n'.join([f"{g.name:30s} {g.category}" for g in games_randomized]))
                             
 
     @monitor_fn
@@ -312,19 +313,14 @@ class Player:
 
 if __name__ == '__main__':
     pass
-
+    print(f"{'='*15} Running GameSession test {'='*15}\n")  
     # setup_logging()
+    
     session = GameSession()
-    # # print(session.games)
-    # print([(g.name, g.category) for g in session.game_sequence])
-    # session.create_game_sequence()
-    # print([(g.name, g.category) for g in session.game_sequence])
-    # print('Done')
-    
-    # # session.pick_next_game()
-    # session.current_game_idx = 14
-    # session.pick_cast(session.games[session.current_game_idx])
-    # session.pick_cast(session.games[session.current_game_idx])
-    # session.pick_cast(session.games[session.current_game_idx])
+    print([session.games[idx].name for idx in session.game_sequence], '\n')
+    for i in range(1,11):
+        session.create_game_sequence()
+        print(f"Game Sequence {i}:")
+        print('\n'.join([f"   - {session.games[idx].category:20s}: {session.games[idx].name}" for idx in session.game_sequence]))
 
-    
+    print('Done')
