@@ -14,6 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 os.makedirs(ROOT / 'logs', exist_ok=True)
 
+
+# Utility functions for the package
 def logthis(*args):
     text = ' '.join([str(element) for element in args])
     logging.info(text)
@@ -99,6 +101,9 @@ def create_label(value, width='80%'):
 
 def create_text(description, value, width='80%'):
     return Text(value=value, description=description, layout=Layout(width=width))
+
+def create_textarea(description, value, width='80%'):
+    return Textarea(value=value, description=description, layout=Layout(width=width))
 
 def create_button(description, button_style='info', icon='check', on_click=None):
     btn = Button(
@@ -234,7 +239,7 @@ class WidgetGames:
         self.w_gnames = [create_text(description=f"{i+1:2d}:", value=f'{self.names[i]}') for i in range(self.ngames)]
         self.w_nbr_players = [create_text(description= 'Nbr players:  ', value=f'{self.nbr_players[i]}') for i in range(self.ngames)]
         self.w_nbr_audience = [create_text(description='Nbr audience: ', value=f'{self.nbr_audience[i]}') for i in range(self.ngames)]
-        self.w_prompt = [create_text(description= 'Prompt:', value=f'{self.prompt[i]}') for i in range(self.ngames)]  
+        self.w_prompt = [create_textarea(description= 'Prompt:', value=f'{self.prompt[i]}') for i in range(self.ngames)]  
         self.w_descr = [create_text(description= 'Description:', value=f'{self.description[i]}') for i in range(self.ngames)]  
         self.w_tips = [create_text(description= 'Tip:', value=f'{self.tips[i]}') for i in range(self.ngames)]  
         cb = self._register_game_for_deletion
