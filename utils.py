@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import sys
+import tkinter as tk
 from configparser import ConfigParser
 from datetime import datetime
 from functools import wraps
@@ -32,6 +33,8 @@ def monitor_fn(fn):
     return wrapper
 
 def setup_logging(filename=None):
+    """Setup logging to file and cvonsole. If no filename is provided, logs are saved in _short.log"""
+
     # Setup logging file
     if filename is None:
         p2log = ROOT / 'logs/_short.log'
@@ -62,8 +65,27 @@ def setup_logging(filename=None):
     # Add both handlers to the root logger
     root_logger.addHandler(file_handler)
     root_logger.addHandler(console_handler)
+    
+    # Custom exception handler to log uncaught exceptions at run time
+    def handle_uncaught_exception(exc_type, exc_value, exc_traceback):
+        if issubclass(exc_type, KeyboardInterrupt):
+            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+            return root_logger.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+    # Set the custom exception handler
+    sys.excepthook = handle_uncaught_exception
 
     print('Logging setup done')
+
+def log_tkinter_exception(func):
+    """Decorator to log exceptions in Tkinter callbacks. Use for TKinter callbacks"""
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            logging.getLogger().error("Exception in Tkinter callback", exc_info=e)
+            raise
+    return wrapper
 
 def get_config():
     """Identifies the config file, loads it and returns a config dictionary."""

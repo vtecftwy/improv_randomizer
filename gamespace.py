@@ -312,6 +312,7 @@ class GameSpace:
                 width=85, justify=tk.CENTER, anchor='center')
 
     @monitor_fn
+    @log_tkinter_exception
     def click_next(self):
         """Calls session.pick_next_game() and update GUI accordingly to new state
         

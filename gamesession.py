@@ -132,7 +132,7 @@ class GameSession:
         selected_idx = np.arange(len(weights))[cast_masks]
         softmax = np.zeros_like(weights)
         softmax[selected_idx] = np.exp(weights[selected_idx]) / np.sum(np.exp(weights[selected_idx]), axis=0)
-
+        
         return softmax
 
     @monitor_fn
