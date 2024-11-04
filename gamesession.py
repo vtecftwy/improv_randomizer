@@ -27,8 +27,9 @@ class GameSession:
     """
 
     @monitor_fn
-    def __init__(self) -> None:
+    def __init__(self, mute=False) -> None:
         logthis(f"  Creating new GameSession object")
+        self.mute = mute
         self.load_session_info()
         self.create_game_sequence()
         self.session_started = False
@@ -39,12 +40,12 @@ class GameSession:
         self.current_game_idx = None
         self.previous_game_idx = None
         self.last_five_minutes_starded = False
-
         logthis(f"   step: {self.step}, games played: {self.nbr_games_played}, curr: {self.current_game_idx}, prev: {self.previous_game_idx}")
 
     @monitor_fn
     def load_session_info(self, shuffle=False):
         """Load games, cast and prompt info from files"""
+
         # Load games
         with open(p2games, 'r') as fp:
             game_json = json.load(fp)
@@ -57,38 +58,49 @@ class GameSession:
             random.shuffle(self.games)
         self.nbr_games = len(self.games)
 
-        # Handle cast
+        # Identify game categorie for this session
+        self.game_categories = sorted(list(set([g.category for g in self.games])))
+        self.played_categories_counts = {cat: 0 for cat in self.game_categories}
+
+        # Load cast
         with open(p2cast, 'r') as fp:
             lines = fp.readlines()
         player_names = [line.removesuffix('\n').strip() for line in lines]
         self.cast = [Player(name, games=self.games) for name in player_names]
         self.nbr_players = len(self.cast)
         
-        self.game_categories = sorted(list(set([g.category for g in self.games])))
-        self.played_categories_counts = {cat: 0 for cat in self.game_categories}
-
+        # Validate all games include and exclude lists with the current cast. Drop any cast member not in current cast
+        for game in self.games:
+            game.host_include = [name for name in game.host_include if name in player_names]
+            game.host_exclude = [name for name in game.host_exclude if name in player_names]
+            game.exclude = [name for name in game.exclude if name in player_names]
+            
         # Handle prompts
         with open(p2prompts, 'r') as fp:
             lines = fp.readlines()
         self.promptlist = [line.removesuffix('\n').strip() for line in lines]
 
         logthis('   Game session data loaded')
-        print(f"{len(self.cast)} cast members: {', '.join(player_names)}\n")
-        print(f"{self.nbr_games} games")
-        for g in self.gamedict.values():
-            print(f" - {g['name']}")
+        
+        if not self.mute:
+            print()
+            print(f"{len(self.cast)} cast members: \n{', '.join(player_names)}\n")
+            print(f"{len(self.game_categories)} game categories: \n{', '.join(self.game_categories)}\n")
+            print(f"{self.nbr_games} games")
+            for c in self.game_categories:
+                games_in_cat = [g for g in self.gamedict.values() if g['category'] == c]
+                for g in games_in_cat:
+                    print(f" - {g['name']:30s} ({g['category']})")
 
     @monitor_fn
     def create_game_sequence(self):
-        """Create a random sequence of games, by defining a sequence of game indices"""
-        # purely random sequence of games
-        # self.game_sequence = list(range(self.nbr_games))
-        # random.shuffle(self.game_sequence)
+        """Create a random sequence of games, by defining a sequence of game indices
         
-        # pick game sequence randomly with the following constraints:
-        #  - no two games from the same category follow each other
-        #  - no game is played twice in the same session
-        #  - all categories are represented in a quasi-equal number of games
+        This methods picks game sequence randomly with the following constraints:
+         - no two games from the same category follow each other
+         - no game is played twice in the same session
+         - all categories are represented in a quasi-equal number of games
+        """
         self.shuffled_categories = random.sample(self.game_categories, len(self.game_categories))
         games_per_category = {cat: [g for g in self.games if g.category == cat] for cat in self.shuffled_categories}
         for cat in self.shuffled_categories:
@@ -102,10 +114,11 @@ class GameSession:
                     games_randomized.append(game)            
         
         self.game_sequence = [self.games.index(g) for g in games_randomized]
-        # print(self.game_sequence)
-        # print('\n'.join([f"{g.name:30s} {g.category}" for g in games_randomized]))
-                            
 
+        logthis(f"   Games organized in the following categories: {self.game_categories}")
+        txt = '\n'.join([f"                          - {g.name:30s} {g.category}" for g in games_randomized])
+        logthis(f"   Game Sequence: \n{txt}")
+                            
     @monitor_fn
     def show_cast(self):
         """Print all info on cast"""
@@ -216,7 +229,7 @@ class GameSession:
             self.step = self.step + 1 if self.step is not None else 1
             self.nbr_games_played = self.nbr_games_played + 1 if self.nbr_games_played is not None else 0
             self.previous_game_idx = self.current_game_idx
-            self.current_game_idx = self.game_sequence.pop()
+            self.current_game_idx = self.game_sequence.pop(0)
         # When there are no more games to play:
         else:
             logthis(f"   No more games to play, {self.game_sequence}")
@@ -248,7 +261,6 @@ class Game:
             assert k in gameinfo.keys(), f'Key {k} is missing from gameinfo dict'
         for k in optional_keys:
             if k not in gameinfo.keys():
-                # self.__setattr__(k, None)
                 setattr(self, k, None)
 
         self.host = None
