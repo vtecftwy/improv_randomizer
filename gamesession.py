@@ -36,9 +36,7 @@ class GameSession:
             priority_category = config_dict.get('priority-category', 'All Play')
         self.set_priority_category = set_priority_category
         self.priority_category = priority_category
-        
-        print('>>>>>>>>>>>>>>>>>>>>>>>>', self.set_priority_category, self.priority_category)
-        print(config_dict)
+
 
         self.mute = mute
         self.load_session_info()
