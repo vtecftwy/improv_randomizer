@@ -27,8 +27,19 @@ class GameSession:
     """
 
     @monitor_fn
-    def __init__(self, mute=False) -> None:
+    def __init__(self, set_priority_category=None, priority_category=None, mute=False) -> None:
         logthis(f"  Creating new GameSession object")
+
+        if set_priority_category is None:
+            set_priority_category = config_dict.get('set-priority-category', False)
+        if priority_category is None:
+            priority_category = config_dict.get('priority-category', 'All Play')
+        self.set_priority_category = set_priority_category
+        self.priority_category = priority_category
+        
+        print('>>>>>>>>>>>>>>>>>>>>>>>>', self.set_priority_category, self.priority_category)
+        print(config_dict)
+
         self.mute = mute
         self.load_session_info()
         self.create_game_sequence()
@@ -100,8 +111,15 @@ class GameSession:
          - no two games from the same category follow each other
          - no game is played twice in the same session
          - all categories are represented in a quasi-equal number of games
+         
+        It is also possible to set a priority game category, for which one game will be played in third position 
         """
         self.shuffled_categories = random.sample(self.game_categories, len(self.game_categories))
+        # When category priority is set, modify the shuffled categories order to ensure that the priority category in the third position
+        if self.set_priority_category and self.priority_category in self.shuffled_categories:
+            self.shuffled_categories.remove(self.priority_category)
+            self.shuffled_categories.insert(2, self.priority_category)
+        
         games_per_category = {cat: [g for g in self.games if g.category == cat] for cat in self.shuffled_categories}
         for cat in self.shuffled_categories:
             games_per_category[cat] = random.sample(games_per_category[cat], len(games_per_category[cat]))
@@ -252,7 +270,7 @@ class Game:
 
     def __init__(self, gameinfo:dict) -> None:
         logthis(f'   Creating new Game object for {gameinfo["name"]}')
-        required_keys = ['name', 'nbr_players', 'nbr_audience']
+        required_keys = ['name', 'nbr_players', 'nbr_audience', 'category']
         optional_keys = ['prompt', 'include', 'exclude', 'description', 'tips']
 
         for k, v in gameinfo.items():

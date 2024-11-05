@@ -106,8 +106,13 @@ def get_config():
     cfg.read(p2config)
     config_dict = {k:v for k,v in cfg['DEFAULT'].items()}
     numerical_values = ['duration-minutes']
+    boolean_values = ['set-category-priority']
     for k in numerical_values:
-        config_dict[k] = int(config_dict[k])
+        if cfg.has_option(section=None, option=k):
+            config_dict[k] = cfg.getint('DEFAULT', k)
+    for k in boolean_values:
+        if cfg.has_option(section=None, option=k):
+            config_dict[k] = cfg.getboolean('DEFAULT', k)
     return config_dict
 
 def get_paths():
