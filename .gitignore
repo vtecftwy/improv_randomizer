@@ -117,7 +117,7 @@ assets/audio/audio-repo/*
 logs/
 test_*.py
 
-# Custom Configuration
+# Custom Configuration: keep default files on top of the folder but ignore all other folders
 config.cfg
 config/*/*
 !config/*.*

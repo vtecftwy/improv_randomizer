@@ -11,10 +11,8 @@ from ipywidgets import Text, Label, Textarea, Button, HTML, Layout, GridspecLayo
 from pathlib import Path
 
 # Setup path to package and modules
-# TODO: correct this line after transforming this is a package
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).parent.parent
 os.makedirs(ROOT / 'logs', exist_ok=True)
-
 
 # Utility functions for the package
 def logthis(*args):

@@ -10,7 +10,8 @@ from playsound import playsound
 from pprint import pprint
 from tkinter import ttk
 from tkinter.messagebox import askyesno
-from utils import *
+from RandomChris.utils import *
+
 
 # Define game parameters
 DISPLAY_SIZE = '1920x1080'
@@ -33,7 +34,7 @@ TEST_COLOR = 'pink'
 
 NBR_LINES_IN_INFO = 3
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 
 def raw_path(filename:str):
     return rf"{ROOT.absolute().as_posix()}/assets/audio/{filename}"

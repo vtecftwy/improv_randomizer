@@ -1,0 +1,3 @@
+include config-default.config
+include config/*
+recursive-include assets

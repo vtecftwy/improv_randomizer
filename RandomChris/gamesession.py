@@ -4,7 +4,7 @@ import numpy as np
 import random
 
 from pathlib import Path
-from utils import *
+from RandomChris.utils import *
 
 config_dict = get_config()
 GAME_DURATION = dt.timedelta(minutes=config_dict['duration-minutes'], seconds=0)
@@ -14,6 +14,7 @@ p2games, p2cast, p2prompts = get_paths()
 assert p2games.exists(), f'File {p2games} does not exist'
 assert p2cast.exists(), f'File {p2cast} does not exist'
 assert p2prompts.exists(), f'File {p2prompts} does not exist'
+
 
 class GameSession:
     """Handles the logic of the game session

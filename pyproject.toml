@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "RandomChris"
+version = "0.1.0"
+author = [
+    {name = "Etienne Charlier"},
+    {name = "Patrick Barret"}
+]
+description = "Short form game randomizer for improv comedy"
+readme = "README.md"
+license = {text = "LICENSE.txt"}
+dynamic = ["version"]
+requires-python = ">= 3.9"
+dependencies = [
+    'ipywidgets',
+    'jupyter',
+    'numpy',
+    'pandas',
+    'pillow',
+    'playsound',
+    'tkinter'
+]
+keywords = ["Improv", "Comedy", "Short Form"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Topic :: Games/Entertainment",
+    "Topic :: Utilities"
+]
+
+[project.urls]
+Homepage = "https://github.com/vtecftwy/improv_randomizer"
