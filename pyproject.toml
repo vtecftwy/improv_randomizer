@@ -5,14 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "RandomChris"
 version = "0.1.0"
-author = [
+authors = [
     {name = "Etienne Charlier"},
     {name = "Patrick Barret"}
 ]
 description = "Short form game randomizer for improv comedy"
 readme = "README.md"
 license = {text = "LICENSE.txt"}
-dynamic = ["version"]
 requires-python = ">= 3.9"
 dependencies = [
     'ipywidgets',
@@ -35,3 +34,6 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/vtecftwy/improv_randomizer"
+
+[tool.setuptools.packages.find]
+include = ["RandomChris"]
