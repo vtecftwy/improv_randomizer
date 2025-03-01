@@ -9,7 +9,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "02ca6a55895dc6b0349024c92cbcecce71137e425d494b34b4447ff6cb618f55"
     },
     "2": {
         "name": "Double Reverse Alphabet",
@@ -21,7 +22,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "89bc8a466c4a758d84ecfd57b5b593715235b17190fa8292f12aa36f5d2fc3a0"
     },
     "3": {
         "name": "Forward Reverse",
@@ -33,7 +35,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "bbadbfc45cd19ff45d595578058a0283dd1440e0d0caef9d2dd1dc7997ea8b15"
     },
     "4": {
         "name": "Genres",
@@ -45,7 +48,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "3561abfe8067f3c1cdec6de4240f041af78d44a6ba619deee9e1d0735fe73e1e"
     },
     "5": {
         "name": "More or Less",
@@ -57,7 +61,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "1c551f54d5b4ef2c7bc94d29ec90013f3271932bfbd42b8d0dd4bcda84978b01"
     },
     "6": {
         "name": "Mutant Debate",
@@ -69,7 +74,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "e4bb2fe5b2b09ea431f02d9ba65ac53d311761df5a1c9f3d3582e53cee96350a"
     },
     "7": {
         "name": "No Laughing",
@@ -81,7 +87,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "6da091a5bc6cfbe34407112d0042b62bac7c6728f6bfb95989981605894cad5e"
     },
     "8": {
         "name": "Pillars",
@@ -93,7 +100,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "cffe39516b51c52b06bcd5bb5c5426a74e8e366d8f4063c5bb3d8b59f68ffe5b"
     },
     "9": {
         "name": "Puppets",
@@ -105,7 +113,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "db2ab7f5e3d00a68b95c3a14a533fd1188166cd7d1284fd75938848be3b1143e"
     },
     "10": {
         "name": "Questions Only",
@@ -117,7 +126,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "f296dc9969307bef59021a8dae053e81e23f25ef8b9f54bee61cd4237958be65"
     },
     "11": {
         "name": "Sit, Stand, Lie",
@@ -129,7 +139,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "b0ae66062138f055f9727da69a037ad32c2a0a140a40395885602e1573681793"
     },
     "12": {
         "name": "Story, Story, Die!",
@@ -143,7 +154,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "fb787a9acadbb696221dd814e981808cfa51769fee28249698325fedec6d7be3"
     },
     "13": {
         "name": "Stunt Doubles",
@@ -155,7 +167,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "f312aad299f608c368ff65dd26645f6a436fd557d2bafe71e7a294bcbc6e07f3"
     },
     "14": {
         "name": "Sure Ding",
@@ -167,7 +180,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "8c5b48d810737aa05f8620239a9a554da2f893474ff4073c0485a006da3ff816"
     },
     "15": {
         "name": "TV Box",
@@ -179,7 +193,8 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "04643b71391301003f27d601c2b5115b9de9b0b68c2b1277c736302a2a759c0b"
     },
     "16": {
         "name": "World's Worst",
@@ -191,6 +206,7 @@
         "host_exclude": [],
         "description": null,
         "tips": null,
-        "category": ""
+        "category": "",
+        "uid": "a393da37e10dc0e60f8e91237ee4bac629b1129ec8c734514d070d32c19e6598"
     }
 }
