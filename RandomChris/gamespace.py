@@ -14,7 +14,7 @@ from RandomChris.utils import *
 
 
 # Define game parameters
-DISPLAY_SIZE = '1920x1080'
+# DISPLAY_SIZE = '1920x1080'
 TITLE = 'C.H.R.I.S'
 FONT_DEFAULT = 'Bahnschrift Condensed'
 FONT_WIDE = 'Bahnschrift'
@@ -36,6 +36,19 @@ NBR_LINES_IN_INFO = 3
 
 ROOT = Path(__file__).resolve().parent.parent
 
+def fontsize(window_h):
+    # (764, 16), (960, 18), (1080, 24), (1440, 28))
+    if window_h >= 1400: return 28
+    elif window_h >= 1000: return 24
+    elif window_h >= 950: return 18
+    elif window_h <= 800: return 16    
+
+def select_canva_image(window_h):
+    'ai2_bg_1366x768.png'
+    'ai2_bg_1707x768.png'
+    'ai2_bg_1920x1080.png'
+    'ai2_bg_2560x1440.png'
+
 def raw_path(filename:str):
     return rf"{ROOT.absolute().as_posix()}/assets/audio/{filename}"
 
@@ -56,6 +69,12 @@ class GameSpace:
         logthis(f"   Creating new GameSpace object")
         self.window = window
         self.session = session
+        # Update dimensions based on display size
+        display_w, display_h = window.winfo_screenwidth(), window.winfo_screenheight()
+        # Game window (Window top bar=40px, Windows taskbar=40 px)
+        self.window_w, self.window_h = display_w-40, display_h-40
+        self.header_h, self.footer_h = 1, 50
+        self.canvas_w, self.canvas_h = self.window_w - 400, self.window_h - self.header_h - self.footer_h -100
         self.define_styles()
         self.build_layout(window)
         self.build_header()
@@ -74,6 +93,8 @@ class GameSpace:
     @monitor_fn
     def define_styles(self):
         """Set predefined styles for tk abd tkk widgets"""
+        FONT_SIZE = fontsize(self.window.winfo_screenheight())
+        
         self.s = ttk.Style()
         # Frames
         self.s.configure(
@@ -92,27 +113,27 @@ class GameSpace:
         # Labels
         self.s.configure(
             'Main.TLabel', background=BG_DEFAULT, foreground=WHITE, 
-            font=(FONT_DEFAULT, 20, 'bold'), 
+            font=(FONT_DEFAULT, FONT_SIZE, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
             'Wide.TLabel', background=BG_DEFAULT, foreground=WHITE, 
-            font=(FONT_WIDE, 20, 'bold'), 
+            font=(FONT_WIDE, FONT_SIZE, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
             'Orange.TLabel', background=ORANGE, foreground=WHITE, 
-            font=(FONT_DEFAULT, 20, 'bold'), 
+            font=(FONT_DEFAULT, FONT_SIZE, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
             'Purple.TLabel', background=PURPLE, foreground=WHITE, 
-            font=(FONT_DEFAULT, 20, 'bold'), 
+            font=(FONT_DEFAULT, FONT_SIZE, 'bold'), 
             relief=tk.NONE
             )
         self.s.configure(
             'Info.TLabel', background=DARK_GREEN, foreground=WHITE, 
-            font=(FONT_DEFAULT, 20, 'normal'), 
+            font=(FONT_DEFAULT, FONT_SIZE, 'normal'), 
             width=25,
             wraplength=350,
             anchor='center', justify=tk.CENTER,
@@ -122,7 +143,7 @@ class GameSpace:
             )
         self.s.configure(
             'Header.TLabel', background=DARK_GREEN, foreground=CYAN, 
-            font=(FONT_WIDE, 20, 'bold'), 
+            font=(FONT_WIDE, FONT_SIZE, 'bold'), 
             # width=25, 
             anchor='we', justify=tk.CENTER,
             # relief=tk.GROOVE , borderwidth=1,
@@ -131,7 +152,7 @@ class GameSpace:
             )
         self.s.configure(
             'GameName.TLabel', background=DARK_GREEN, foreground=CYAN, 
-            font=(FONT_WIDE, 24, 'bold'), 
+            font=(FONT_WIDE, FONT_SIZE + 4, 'bold'), 
             width=22, 
             anchor='center', justify=tk.CENTER,
             # relief=tk.GROOVE , borderwidth=1,
@@ -141,7 +162,7 @@ class GameSpace:
         # Buttons
         self.s.configure(
             'Main.TButton', background=CYAN, foreground='black',
-            font=(FONT_DEFAULT, 30, 'bold'), 
+            font=(FONT_DEFAULT, FONT_SIZE + 10, 'bold'), 
             width=18,
             anchor='center', 
             justify=tk.CENTER,
@@ -153,7 +174,7 @@ class GameSpace:
             )
         self.s.configure(
             'Small.TButton', background=CYAN, foreground='black',
-            font=(FONT_DEFAULT, 15, 'normal'), 
+            font=(FONT_DEFAULT, FONT_SIZE - 5, 'normal'), 
             width=6,
             anchor='center', 
             justify=tk.CENTER,
@@ -163,23 +184,22 @@ class GameSpace:
     def build_layout(self, window):
         """Build the game window, with empty canvas, and info frames"""
         
-        # Format the game window (Window top bar=40px, Windows taskbar=40 px)
         window.title(TITLE)
         window.configure(background=BG_DEFAULT)
-        window.geometry(DISPLAY_SIZE)
+        window.geometry(f"{self.window_w}x{self.window_h}+0+0")
 
         # Set frames
-        self.header = ttk.Frame(window, width=1900, heigh=20, style='Main.TFrame')
+        self.header = ttk.Frame(window, width=self.window_w, heigh=self.header_h, style='Main.TFrame')
         self.header.grid(row=1, column=1, sticky='we')
 
-        self.main = ttk.Frame(window, width=1900, heigh=700, style='Main.TFrame')
+        self.main = ttk.Frame(window, width=self.window_w, heigh=self.canvas_h, style='Main.TFrame')
         self.main.grid(row=2, column=1, sticky='we')
 
-        self.footer = ttk.Frame(window, width=1900, heigh=40, style='Main.TFrame')
+        self.footer = ttk.Frame(window, width=self.window_w, heigh=self.footer_h, style='Main.TFrame')
         self.footer.grid(row=3, column=1, sticky='we')
 
         # Create canvas in main frame
-        self.canvas = tk.Canvas(self.main, width=1100, height=700, borderwidth=0, highlightthickness=0) 
+        self.canvas = tk.Canvas(self.main, width=self.canvas_w, height=self.canvas_h, borderwidth=0, highlightthickness=0) 
         self.canvas.grid(row=1, column=1, columnspan=10, sticky='nw')
         
         logthis('   winfo: w:', window.winfo_screenwidth(), 'h: ',window.winfo_screenheight())
@@ -206,6 +226,8 @@ class GameSpace:
             self.footer, text='START', command=self.click_next, style='Main.TButton'
             )
         self.btn_next.grid(row=1, column=21, columnspan=10)
+        self.btn_next.focus_set()
+        self.window.bind('<Return>', lambda event: self.btn_next.invoke())
 
     @monitor_fn
     def draw_canvas_bg(self):
@@ -215,8 +237,35 @@ class GameSpace:
         background_img = ROOT/'assets'/'img'/img_fname
         assert background_img.exists(), f"No file found at {background_img}"
 
-        self.img = ImageTk.PhotoImage(Image.open(background_img))
-        self.canvas.create_image(0, 0, anchor='nw', image=self.img)
+        # Open the image
+        img = Image.open(background_img)
+
+        # Calculate the new width to maintain the aspect ratio
+        img_width, img_height = img.size
+        if self.canvas_h/img_height >= self.canvas_w/img_width:      
+            new_height = self.canvas_h
+            new_width = int((img_width / img_height) * new_height)
+            print(img_width, img_height, new_width, new_height)
+        else:
+            new_width = self.canvas_w
+            new_height = int((img_height / img_width) * new_width)
+            print(img_width, img_height, new_width, new_height)
+
+        # Resize the image
+        img_resized = img.resize((new_width, new_height))   
+        
+        # Convert the resized image to PhotoImage
+        self.img = ImageTk.PhotoImage(img_resized)
+        # self.img = ImageTk.PhotoImage(Image.open(background_img))
+
+        # Calculate coordinates to center the image
+        x_center = (self.canvas_w - new_width) // 2
+        y_center = (self.canvas_h - new_height) // 2
+
+        # Place the image at the center
+        self.canvas.create_image(x_center, y_center, anchor='nw', image=self.img)
+        
+        # self.canvas.create_image(0, 0, anchor='nw', image=self.img)
         logthis('   img info: w:', self.img.width(), 'h:', self.img.height())
 
     @monitor_fn
@@ -268,7 +317,7 @@ class GameSpace:
         #split games into areas and figure out positions
         midpt_x = int(self.canvas.config('width')[4]) / 2
         midpt_y = int(self.canvas.config('height')[4]) / 2
-        position_r=280
+        position_r= 280 / 960 * self.window_h
         # self.canvas.create_text(midpt_x, midpt_y, text='Center', font=(None,12))
         angle = math.radians(360/self.nbr_games)
         # logthis(angle)

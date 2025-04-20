@@ -31,7 +31,7 @@ def monitor_fn(fn):
     return wrapper
 
 def setup_logging(filename=None):
-    """Setup logging to file and cvonsole. If no filename is provided, logs are saved in _short.log"""
+    """Setup logging to file and console. If no filename is provided, logs are saved in _short.log"""
 
     # Setup logging file
     if filename is None:
