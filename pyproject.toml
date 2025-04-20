@@ -20,7 +20,7 @@ dependencies = [
     'pandas',
     'pillow',
     'playsound',
-    'tkinter'
+    'tk'
 ]
 keywords = ["Improv", "Comedy", "Short Form"]
 classifiers = [
