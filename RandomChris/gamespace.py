@@ -210,31 +210,31 @@ class GameSpace:
 
     @monitor_fn
     def build_footer(self):
+        # Add configuration button on the left
+        self.btn_config = ttk.Button(
+            self.footer, text='Config', command=self._open_config,
+            style='Small.TButton'
+        )
+        self.btn_config.grid(row=1, column=1, padx=10)
+        
         self.score_label = ttk.Label(
             self.footer, text='Number Games Played: 0\n', style='Wide.TLabel',
             anchor='n', width=40
             )
-        self.score_label.grid(row=1, column=1, columnspan=10, sticky='ns')
+        self.score_label.grid(row=1, column=2, columnspan=10, sticky='ns')
         
         self.time_left_label = ttk.Label(
             self.footer, text='Time Left: x:xx:xx\n', style='Wide.TLabel',
             anchor='n', width=35
             )
-        self.time_left_label.grid(row=1, column=11, columnspan=10, sticky='ns')
+        self.time_left_label.grid(row=1, column=12, columnspan=10, sticky='ns')
         
         self.btn_next = ttk.Button(
             self.footer, text='START', command=self.click_next, style='Main.TButton'
             )
-        self.btn_next.grid(row=1, column=21, columnspan=10)
+        self.btn_next.grid(row=1, column=22, columnspan=10)
         self.btn_next.focus_set()
         self.window.bind('<Return>', lambda event: self.btn_next.invoke())
-        
-        # Add configuration button
-        self.btn_config = ttk.Button(
-            self.footer, text='Config', command=self._open_config,
-            style='Small.TButton'
-        )
-        self.btn_config.grid(row=1, column=31, columnspan=5)
 
     @monitor_fn
     def draw_canvas_bg(self):
