@@ -12,6 +12,7 @@ logging.info(f"\n{'='*50}\nNew Session: {datetime.now().strftime('%Y-%m-%d %H:%M
 
 from RandomChris.gamespace import GameSpace
 from RandomChris.gamesession import GameSession
+from RandomChris.config_manager import ConfigManager
 
 # Setup path to package and modules
 ROOT = Path(__file__).parent.parent
@@ -19,7 +20,7 @@ ROOT = Path(__file__).parent.parent
 
 if __name__ == '__main__':
     
-    # Catpure arguments to set priority category, which will overwrite the config.cfg file
+    # Capture arguments to set priority category, which will overwrite the config.cfg file
     parser = argparse.ArgumentParser(description='Run Improv Randomizer')
     parser.add_argument('--set-category-priority', action='store_true', help='Put selected category in 3rd position')
     parser.add_argument('--category', type=str, default='', help='Category to consider as priority, default is All Play')
@@ -29,6 +30,9 @@ if __name__ == '__main__':
     # Pass None to GameSession if the arguments are not set, in order to allow loading values from config.cfg
     if not set_priority_category: set_priority_category = None
     if priority_category == '': priority_category = None
+    
+    # Initialize configuration manager
+    config_manager = ConfigManager()
     
     # Main loop   
     session = GameSession(set_priority_category=set_priority_category, priority_category=priority_category)

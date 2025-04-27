@@ -228,6 +228,13 @@ class GameSpace:
         self.btn_next.grid(row=1, column=21, columnspan=10)
         self.btn_next.focus_set()
         self.window.bind('<Return>', lambda event: self.btn_next.invoke())
+        
+        # Add configuration button
+        self.btn_config = ttk.Button(
+            self.footer, text='Config', command=self._open_config,
+            style='Small.TButton'
+        )
+        self.btn_config.grid(row=1, column=31, columnspan=5)
 
     @monitor_fn
     def draw_canvas_bg(self):
@@ -546,6 +553,12 @@ class GameSpace:
         self.stats.loc[[self.game_dt],:] = self.stats.loc[[self.game_dt],:] + row
         self.stats.to_csv(self.p2stats, index=True)
         logthis('   player stats updated:', self.stats.loc[self.game_dt,:].values.tolist())
+
+    def _open_config(self):
+        """Open the configuration window"""
+        from RandomChris.config_window import ConfigWindow
+        config_window = ConfigWindow(self.window)
+        config_window.window.grab_set()  # Make window modal
 
 
 if __name__ == '__main__':
