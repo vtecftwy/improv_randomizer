@@ -1,0 +1,509 @@
+{
+    "1": {
+        "name": "A Date with Me",
+        "nbr_players": 8,
+        "nbr_audience": 0,
+        "prompt": "A date with me is like ....\n\nobject, animal, type of food, occupation, character/personality, fear",
+        "exclude": [
+            "Eddie"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Eddie",
+            "Knick"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "2": {
+        "name": "Questions Only",
+        "nbr_players": 8,
+        "nbr_audience": 0,
+        "prompt": "A location with a lot of people.",
+        "exclude": [],
+        "host_include": [
+            "Chris",
+            "Eddie",
+            "Etienne",
+            "Grace",
+            "Knick",
+            "Punk",
+            "Yirong"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "3": {
+        "name": "Story, Story, Die!",
+        "nbr_players": 8,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "4": {
+        "name": "World's Worst",
+        "nbr_players": 8,
+        "nbr_audience": 0,
+        "prompt": "An occupation, animal, or celebrity.",
+        "exclude": [
+            "Eddie"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Eddie",
+            "Knick"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "5": {
+        "name": "Pillars",
+        "nbr_players": 3,
+        "nbr_audience": 2,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Audience",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "6": {
+        "name": "Puppets",
+        "nbr_players": 2,
+        "nbr_audience": 2,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Eddie"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Audience",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "7": {
+        "name": "TV Box",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "What are four of your favorite \nTV channels?\n\n+ A line of dialog you would be surprized to hear",
+        "exclude": [],
+        "host_include": [
+            "Chris",
+            "Eddie",
+            "Etienne",
+            "Grace",
+            "Knick",
+            "Punk",
+            "Yirong",
+            "Elva"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Continuation",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "8": {
+        "name": "Emotion Roller Coaster",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "Four emotions:\n3 emotions of increasing intensity\n1 emotion that does not exist. \n\n+ A problem that needs to be solved.",
+        "exclude": [
+            "Eddie"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Eddie"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Emotion",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "9": {
+        "name": "Emotional Floorplan",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Three Emotions of increasing intensity\n\n+ A location that does not fit in this room",
+        "exclude": [
+            "Eddie"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Emotion",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "10": {
+        "name": "Everyone Dies",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "3 Locations: \none normal, one exotic, one unreal.",
+        "exclude": [
+            "Charles",
+            "Don",
+            "Elva",
+            "Fulvio",
+            "Harry",
+            "Jennel",
+            "Meg",
+            "Stacey"
+        ],
+        "host_include": [
+            "Etienne",
+            "Yirong",
+            "Grace"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Energy",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "11": {
+        "name": "Sit, Stand, Lie",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Your favoured outdoor activity.",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Charles",
+            "Don",
+            "Elva",
+            "Fulvio",
+            "Harry",
+            "Jennel",
+            "Meg",
+            "Stacey"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Energy",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "12": {
+        "name": "Stunt Doubles",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "An everyday activity.",
+        "exclude": [
+            "Don",
+            "Eddie"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Punk",
+            "Eddie"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Energy",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "13": {
+        "name": "Sure Ding",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [
+            "Chris",
+            "Eddie",
+            "Etienne",
+            "Grace",
+            "Knick",
+            "Punk",
+            "Yirong",
+            "Elva"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Energy",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "14": {
+        "name": "Chain Death",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "Occupation, location, ordinary object\n\nAll within 60 seconds.",
+        "exclude": [
+            "Don",
+            "Stacey"
+        ],
+        "host_include": [
+            "Knick",
+            "Etienne",
+            "Chris",
+            "Yirong",
+            "Grace"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Punk"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Guessing",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "15": {
+        "name": "Suitcase",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "Where are you going on vacation? \n\n+ Three items: \na useful item\na useless item \na really weird item",
+        "exclude": [],
+        "host_include": [
+            "Knick",
+            "Etienne",
+            "Chris",
+            "Grace",
+            "Yirong"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Punk"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Guessing",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "16": {
+        "name": "Mutant Debate",
+        "nbr_players": 5,
+        "nbr_audience": 0,
+        "prompt": "What is a dumb argument you've had recently?",
+        "exclude": [],
+        "host_include": [
+            "Etienne",
+            "Grace",
+            "Yirong",
+            "Fulvio"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Knick",
+            "Chris"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Limitation",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "17": {
+        "name": "One Three Five",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Which actor uses 1, 3, 5 words? \n\n+ An ordinary task you do every week.",
+        "exclude": [],
+        "host_include": [
+            "Xu"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Limitation",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "18": {
+        "name": "Two lines",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "One question, one statement each.\n\n+ A location where you would not like to bring your mother.",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Limitation",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "19": {
+        "name": "Forward Reverse",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "What is an event you are excited to go to?",
+        "exclude": [],
+        "host_include": [
+            "Haili"
+        ],
+        "host_exclude": [
+            "Don",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Punk"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Replay",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "20": {
+        "name": "Genres",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "At least three movie genres. \n\n+ Title of a netflix movie which will never be made",
+        "exclude": [],
+        "host_include": [
+            "Chris",
+            "Eddie",
+            "Etienne",
+            "Grace",
+            "Knick",
+            "Punk",
+            "Yirong"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Replay",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "21": {
+        "name": "Last Comic Standing",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [
+            "Chris",
+            "Etienne",
+            "Grace",
+            "Knick",
+            "Punk",
+            "Yirong"
+        ],
+        "host_exclude": [
+            "Don",
+            "Haili",
+            "Harry",
+            "Stacey",
+            "Xu",
+            "Alex",
+            "Eddie"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Replay",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    }
+}

@@ -1,0 +1,71 @@
+{
+  "defaultProfile": "ai2-show",
+  "profiles": {
+    "default": {
+      "label": "Default",
+      "folder": "default",
+      "cast": "cast.txt",
+      "games": "games.json",
+      "prompts": "prompts.txt",
+      "durationMinutes": 45,
+      "setPriorityCategory": false,
+      "priorityCategory": "All Play",
+      "backgroundImage": "ai2_bg_1100x700.png"
+    },
+    "ai2-show": {
+      "label": "AI2 Show",
+      "folder": "ai2-show",
+      "cast": "ai2-cast-2026-01-24.txt",
+      "games": "ai2-games-2026-01-24.json",
+      "prompts": "prompts.txt",
+      "durationMinutes": 45,
+      "setPriorityCategory": true,
+      "priorityCategory": "All Play",
+      "backgroundImage": "ai2_bg_1920x1080.png"
+    },
+    "ai2": {
+      "label": "AI2",
+      "folder": "ai2",
+      "cast": "ai2-cast.txt",
+      "games": "ai2-games.json",
+      "prompts": "prompts.txt",
+      "durationMinutes": 45,
+      "setPriorityCategory": true,
+      "priorityCategory": "All Play",
+      "backgroundImage": "ai2_bg_1920x1080.png"
+    },
+    "jam": {
+      "label": "Jam",
+      "folder": "jam",
+      "cast": "jam-cast.txt",
+      "games": "jam-games.json",
+      "prompts": "jam-prompts.txt",
+      "durationMinutes": 45,
+      "setPriorityCategory": false,
+      "priorityCategory": "All Play",
+      "backgroundImage": "ai2_bg_1920x1080.png"
+    },
+    "utseus": {
+      "label": "UTSEUS",
+      "folder": "utseus",
+      "cast": "cast.txt",
+      "games": "ai201-2026.json",
+      "prompts": "prompts.txt",
+      "durationMinutes": 45,
+      "setPriorityCategory": true,
+      "priorityCategory": "All Play",
+      "backgroundImage": "ai2_bg_1920x1080.png"
+    },
+    "zmack": {
+      "label": "Zmack",
+      "folder": "zmack",
+      "cast": "cast.txt",
+      "games": "games.json",
+      "prompts": "prompts.txt",
+      "durationMinutes": 45,
+      "setPriorityCategory": false,
+      "priorityCategory": "All Play",
+      "backgroundImage": "ai2_bg_1920x1080.png"
+    }
+  }
+}

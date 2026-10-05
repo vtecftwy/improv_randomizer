@@ -1,0 +1,197 @@
+{
+    "1": {
+        "name": "1. NEOX",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "2": {
+        "name": "2. U'NOV",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "3": {
+        "name": "3. Prometheus",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "4": {
+        "name": "4. LAST",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "5": {
+        "name": "5. VITA",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "6": {
+        "name": "6. SinoTech",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "7": {
+        "name": "7. Ami-e",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "8": {
+        "name": "8. The 104th",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "9": {
+        "name": "9. NodeX",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "10": {
+        "name": "10. LHYM",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "11": {
+        "name": "11. Chang High",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "12": {
+        "name": "12. Fifth Element",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    },
+    "13": {
+        "name": "13. Qready",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "3 minutes to present your current project status",
+        "exclude": [],
+        "host_include": [
+            "Team Captain"
+        ],
+        "host_exclude": [],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": ""
+    }
+}

@@ -1,0 +1,486 @@
+{
+    "1": {
+        "name": "Emotion Roller Coaster",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "Four emotions. \nA problem that needs to be solved.",
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Knick",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "???",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "2": {
+        "name": "TV Box",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "What are 4 of your favorite \nTV channels?",
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu",
+            "Grace"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "???",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "3": {
+        "name": "A Date with Me",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "A date with me is like ....",
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [
+            "Chris",
+            "Etienne"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Knick",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "4": {
+        "name": "Questions Only",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "A location with a lot of people.",
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [
+            "Etienne"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "5": {
+        "name": "Story, Story, Die!",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Punk"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "6": {
+        "name": "World's Worst",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "An occupation, animal, or celebrity.",
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "All Play",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "7": {
+        "name": "Pillars",
+        "nbr_players": 3,
+        "nbr_audience": 2,
+        "prompt": null,
+        "exclude": [
+            "Punk",
+            "Knick"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Audience",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "8": {
+        "name": "Puppets",
+        "nbr_players": 2,
+        "nbr_audience": 2,
+        "prompt": null,
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Knick",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Audience",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "9": {
+        "name": "Double Reverse Alphabet",
+        "nbr_players": 2,
+        "nbr_audience": 0,
+        "prompt": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z   \nA type of non romantic relationship.",
+        "exclude": [
+            "Punk",
+            "Haili",
+            "Xu"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Knick",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Gimmick",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "10": {
+        "name": "Mutant Debate",
+        "nbr_players": 5,
+        "nbr_audience": 0,
+        "prompt": "What is a dumb argument you've had recently?",
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [
+            "Etienne",
+            "Yirong",
+            "Grace"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Knick",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Gimmick",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "11": {
+        "name": "One Three Five",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Which actor uses 1, 3, 5 words? \nAn ordinary task you do every week.",
+        "exclude": [
+            "Punk",
+            "Knick"
+        ],
+        "host_include": [
+            "Xu"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Gimmick",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "12": {
+        "name": "Sure Ding",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [
+            "Punk",
+            "Lenny",
+            "Haili"
+        ],
+        "host_include": [
+            "Yirong"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu",
+            "Grace",
+            "Chris"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Gimmick",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "13": {
+        "name": "Two lines",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Two lines (a question, a statement).\nA location.",
+        "exclude": [
+            "Punk",
+            "Knick"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Gimmick",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "14": {
+        "name": "Chain Death",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "Occupation, location, ordinary object\nAll within 60 seconds.",
+        "exclude": [
+            "Punk",
+            "Haili"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Guessing",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "15": {
+        "name": "Everyone Dies",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "3 Locations: \none normal, one exotic, one unreal.",
+        "exclude": [
+            "Punk",
+            "Haili"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Knick",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Physical",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "16": {
+        "name": "Sit, Stand, Lie",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Your favoured Olympic sport.",
+        "exclude": [
+            "Punk"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Physical",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "17": {
+        "name": "Stunt Doubles",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "An everyday activity.",
+        "exclude": [
+            "Haili",
+            "Lenny",
+            "Xu"
+        ],
+        "host_include": [
+            "Yirong"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Physical",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "18": {
+        "name": "Forward Reverse",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "What is an event you are excited to go to?",
+        "exclude": [
+            "Lenny"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu",
+            "Grace"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Replay",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "19": {
+        "name": "Genres",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "At least three movie genres. \n+ Title of a netflix movie which will never be made",
+        "exclude": [
+            "Punk",
+            "Lenny"
+        ],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Replay",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "20": {
+        "name": "Irish Drinking Song",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "An occupation",
+        "exclude": [
+            "Punk",
+            "Yirong",
+            "Xu"
+        ],
+        "host_include": [
+            "Lenny"
+        ],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Replay",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "21": {
+        "name": "Last Comic Standing",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [
+            "Punk",
+            "Lenny",
+            "Haili"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Haili",
+            "Lenny",
+            "Alex",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Replay",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    }
+}

@@ -1,0 +1,415 @@
+{
+    "1": {
+        "name": "A Date with Me",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "A date with me is like ....",
+        "exclude": [],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "2": {
+        "name": "Add-on fairy tale",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "3": {
+        "name": "Da Doo Ron Ron",
+        "nbr_players": 5,
+        "nbr_audience": 0,
+        "prompt": "A one-syllable word",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "4": {
+        "name": "Double Reverse Alphabet",
+        "nbr_players": 2,
+        "nbr_audience": 0,
+        "prompt": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z   \nA type of non romantic relationship.",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "5": {
+        "name": "Emotion Roller Coaster",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "A problem that needs to be solved",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "6": {
+        "name": "Everyone Dies",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "3 Locations: \none normal, one exotic, one unreal",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "7": {
+        "name": "Forward Reverse",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "What is an event you are excited to go to?",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "8": {
+        "name": "Four Square",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "What are four of your favorite TV channels?",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "9": {
+        "name": "Irish Drinking Song",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "Something you are embarassed about.",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "10": {
+        "name": "Last Comic Standing",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "11": {
+        "name": "Mutant Debate",
+        "nbr_players": 5,
+        "nbr_audience": 0,
+        "prompt": "What is a dumb argument you've had recently?",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "12": {
+        "name": "No Laughing",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "Something funny and something serious",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "13": {
+        "name": "One Three Five",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Which actor uses 1, 3, 5 words? \nAn ordinary task you do everyday.",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "14": {
+        "name": "Pillars",
+        "nbr_players": 3,
+        "nbr_audience": 2,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "15": {
+        "name": "Props",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "Items from the audience",
+        "exclude": [],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "16": {
+        "name": "Puppets",
+        "nbr_players": 2,
+        "nbr_audience": 2,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "17": {
+        "name": "Questions Only",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "A location with a lot of people",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "18": {
+        "name": "Sit, Stand, Lie",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Your favorite Olympic sport",
+        "exclude": [
+            "Punk",
+            "Curt",
+            "Lenny",
+            "Xu"
+        ],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "19": {
+        "name": "Story, Story, Die!",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "A story that does not exist",
+        "exclude": [],
+        "host_include": [
+            "Knick"
+        ],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "20": {
+        "name": "Stunt Doubles",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "An everyday activity",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "21": {
+        "name": "Suitcase",
+        "nbr_players": 4,
+        "nbr_audience": 0,
+        "prompt": "Where are you going on vacation? \n three normal items \nthree wierd items",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Punk",
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "22": {
+        "name": "Sure Ding",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": null,
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "23": {
+        "name": "Two lines",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "Two lines,\nA location",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "24": {
+        "name": "World's Worst",
+        "nbr_players": 0,
+        "nbr_audience": 0,
+        "prompt": "An occupation, animal, or celebrity",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    },
+    "25": {
+        "name": "Genres",
+        "nbr_players": 3,
+        "nbr_audience": 0,
+        "prompt": "At least three movie genres. \n+ Title of a netflix movie which will never be made",
+        "exclude": [],
+        "host_include": [],
+        "host_exclude": [
+            "Lenny",
+            "Xu"
+        ],
+        "description": null,
+        "tips": null,
+        "category": "Limitation",
+        "uid": "a03b221c6c6eae7122ca51695d456d5222e524889136394944b2f9763b483615"
+    }
+}
