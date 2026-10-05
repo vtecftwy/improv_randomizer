@@ -73,6 +73,8 @@ class GameSpace:
         display_w, display_h = window.winfo_screenwidth(), window.winfo_screenheight()
         # Game window (Window top bar=40px, Windows taskbar=40 px)
         self.window_w, self.window_h = display_w-40, display_h-40
+        # ??????????????????????????????????????
+        # self.window_w, self.window_h = int(display_w/1.5), int(display_h/1.75)
         self.header_h, self.footer_h = 1, 50
         self.canvas_w, self.canvas_h = self.window_w - 400, self.window_h - self.header_h - self.footer_h -100
         self.define_styles()

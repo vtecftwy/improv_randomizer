@@ -119,5 +119,7 @@ test_*.py
 
 # Custom Configuration: keep default files on top of the folder but ignore all other folders
 config.cfg
+config-utseus.cfg
+config-ai2.cfg
 config/*/*
 !config/*.*
