@@ -57,7 +57,12 @@ The web version is a static site, so it can be hosted by any web server that ser
    npm run build
    ```
 
-2. Copy the **contents** of the generated `dist/` directory to the web root configured for the site. For example, if `chris.example.com` is configured to serve `/var/www/chris.example.com`, copy `dist/index.html`, `dist/assets/`, `dist/config/`, and the other files inside `dist/` there. Do not copy the `dist` folder itself as a nested directory unless that nested URL is intended.
+2. Copy the **contents** of the generated `dist/` directory to the web root configured for the site. For example, if `chris.example.com` is configured to serve `/var/www/chris.example.com`, copy:
+    - `dist/index.html`, 
+    - `dist/assets/`, 
+    - `dist/config/`, and 
+    - the other files inside `dist/` there.
+    - Do not copy the `dist` folder itself as a nested directory unless that nested URL is intended.
 
 3. Configure the domain's DNS to point to the server, and configure its virtual host to serve that web root over HTTPS. The server should serve `index.html` for `/` and preserve the static directory structure so the app can load its profile data and assets.
 
